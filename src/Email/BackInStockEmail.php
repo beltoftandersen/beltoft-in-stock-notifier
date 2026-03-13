@@ -38,14 +38,14 @@ class BackInStockEmail extends \WC_Email {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->id             = 'isn_back_in_stock';
+		$this->id             = 'bisn_back_in_stock';
 		$this->customer_email = true;
 		$this->title          = __( 'Back In Stock', 'beltoft-in-stock-notifier' );
 		$this->description    = __( 'Sent to customers who subscribed for a back-in-stock notification when the product returns to stock.', 'beltoft-in-stock-notifier' );
 
 		$this->template_html  = 'emails/back-in-stock.php';
 		$this->template_plain = 'emails/plain/back-in-stock.php';
-		$this->template_base  = ISN_PATH . 'templates/';
+		$this->template_base  = BISN_PATH . 'templates/';
 
 		$this->placeholders = array(
 			'{product_name}' => '',

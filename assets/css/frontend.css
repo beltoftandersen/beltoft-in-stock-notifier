@@ -8,7 +8,7 @@
 
 /* ── Entrance ─────────────────────────────────────────────────── */
 
-@keyframes isn-enter {
+@keyframes bisn-enter {
 	from {
 		opacity: 0;
 		transform: translateY(8px);
@@ -21,7 +21,7 @@
 
 /* ── Container ──────────────────────────────────────────────────── */
 
-.isn-notify-form {
+.bisn-notify-form {
 	--_accent: #2563eb;
 	--_accent-hover: #1d4ed8;
 	--_accent-glow: rgba(37, 99, 235, 0.15);
@@ -42,17 +42,17 @@
 	color: var(--_text);
 	font-family: inherit;
 	box-shadow: none;
-	animation: isn-enter 0.4s var(--_ease) both;
+	animation: bisn-enter 0.4s var(--_ease) both;
 }
 
-.isn-notify-form form.isn-form {
+.bisn-notify-form form.bisn-form {
 	margin: 0;
 	padding: 0;
 }
 
 /* ── Screen reader text ─────────────────────────────────────────── */
 
-.isn-notify-form .screen-reader-text {
+.bisn-notify-form .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute;
 	height: 1px;
@@ -63,7 +63,7 @@
 
 /* ── Heading ────────────────────────────────────────────────────── */
 
-.isn-form-heading {
+.bisn-form-heading {
 	margin: 0 0 16px;
 	font-size: 17px;
 	font-weight: 600;
@@ -73,17 +73,17 @@
 
 /* ── Field rows ─────────────────────────────────────────────────── */
 
-.isn-field {
+.bisn-field {
 	margin-bottom: 16px;
 }
 
-.isn-field:last-child {
+.bisn-field:last-child {
 	margin-bottom: 0;
 }
 
 /* ── Inline row (email + button joined) ─────────────────────────── */
 
-.isn-fields-row {
+.bisn-fields-row {
 	display: flex;
 	align-items: stretch;
 	width: 100%;
@@ -93,13 +93,13 @@
 	box-shadow: none;
 }
 
-.isn-fields-row:focus-within {
+.bisn-fields-row:focus-within {
 	box-shadow: none;
 }
 
 /* ── Email input ────────────────────────────────────────────────── */
 
-.isn-notify-form .isn-email-input {
+.bisn-notify-form .bisn-email-input {
 	flex: 1;
 	min-width: 0;
 	height: 40px;
@@ -114,18 +114,18 @@
 	box-sizing: border-box;
 }
 
-.isn-notify-form .isn-email-input::placeholder {
+.bisn-notify-form .bisn-email-input::placeholder {
 	color: #94a3b8;
 }
 
-.isn-notify-form .isn-email-input:focus {
+.bisn-notify-form .bisn-email-input:focus {
 	outline: none;
 	background-color: #fff;
 }
 
 /* ── Quantity input ─────────────────────────────────────────────── */
 
-.isn-field-quantity label {
+.bisn-field-quantity label {
 	display: block;
 	margin-bottom: 6px;
 	font-size: 15px;
@@ -133,7 +133,7 @@
 	color: var(--_text-secondary);
 }
 
-.isn-notify-form .isn-quantity-input {
+.bisn-notify-form .bisn-quantity-input {
 	width: 80px;
 	height: 36px;
 	padding: 0 10px;
@@ -148,15 +148,15 @@
 		box-shadow 0.2s var(--_ease);
 }
 
-.isn-notify-form .isn-quantity-input::-webkit-inner-spin-button,
-.isn-notify-form .isn-quantity-input::-webkit-outer-spin-button {
+.bisn-notify-form .bisn-quantity-input::-webkit-inner-spin-button,
+.bisn-notify-form .bisn-quantity-input::-webkit-outer-spin-button {
 	height: 20px;
 	width: 14px;
 	margin: auto 0;
 	opacity: 1;
 }
 
-.isn-notify-form .isn-quantity-input:focus {
+.bisn-notify-form .bisn-quantity-input:focus {
 	outline: none;
 	border-color: var(--_accent);
 	box-shadow: none;
@@ -164,7 +164,7 @@
 
 /* ── GDPR checkbox ──────────────────────────────────────────────── */
 
-.isn-field-gdpr label {
+.bisn-field-gdpr label {
 	display: flex;
 	align-items: flex-start;
 	gap: 10px;
@@ -174,7 +174,7 @@
 	cursor: pointer;
 }
 
-.isn-field-gdpr input[type="checkbox"] {
+.bisn-field-gdpr input[type="checkbox"] {
 	margin-top: 3px;
 	flex-shrink: 0;
 	accent-color: var(--_accent);
@@ -185,7 +185,7 @@
 
 /* ── Submit button ──────────────────────────────────────────────── */
 
-.isn-notify-form .isn-submit {
+.bisn-notify-form .bisn-submit {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -208,20 +208,20 @@
 		transform 0.1s var(--_ease);
 }
 
-.isn-notify-form .isn-submit:hover {
+.bisn-notify-form .bisn-submit:hover {
 	background: var(--_accent-hover);
 }
 
-.isn-notify-form .isn-submit:active {
+.bisn-notify-form .bisn-submit:active {
 	transform: scale(0.98);
 }
 
-.isn-notify-form .isn-submit:focus-visible {
+.bisn-notify-form .bisn-submit:focus-visible {
 	outline: 2px solid var(--_accent);
 	outline-offset: 2px;
 }
 
-.isn-notify-form .isn-submit:disabled {
+.bisn-notify-form .bisn-submit:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 	transform: none;
@@ -229,7 +229,7 @@
 
 /* ── Status messages ────────────────────────────────────────────── */
 
-.isn-form-message {
+.bisn-form-message {
 	margin-top: 0;
 	max-height: 0;
 	overflow: hidden;
@@ -243,16 +243,16 @@
 		opacity 0.3s var(--_ease);
 }
 
-.isn-form-message:not(:empty) {
+.bisn-form-message:not(:empty) {
 	margin-top: 12px;
 	max-height: 80px;
 	opacity: 1;
 }
 
-.isn-form-message.isn-success {
+.bisn-form-message.bisn-success {
 	color: var(--_ok);
 }
 
-.isn-form-message.isn-error {
+.bisn-form-message.bisn-error {
 	color: var(--_err);
 }

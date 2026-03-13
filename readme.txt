@@ -4,7 +4,7 @@ Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.29
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,12 +59,12 @@ Beltoft In-Stock Notifier for WooCommerce adds a subscription form to out-of-sto
 === Hooks & Filters ===
 Developers can extend the plugin:
 
-* `instock_notifier_form_html` / `instock_notifier_form_fields` / `instock_notifier_form_heading_text`
-* `instock_notifier_before_subscription` / `instock_notifier_after_subscription`
-* `instock_notifier_validate_subscription`
-* `instock_notifier_before_notification_sent` / `instock_notifier_after_notification_sent` / `instock_notifier_after_batch_sent`
-* `instock_notifier_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
-* `instock_notifier_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
+* `bisn_form_html` / `bisn_form_fields` / `bisn_form_heading_text`
+* `bisn_before_subscription` / `bisn_after_subscription`
+* `bisn_validate_subscription`
+* `bisn_before_notification_sent` / `bisn_after_notification_sent` / `bisn_after_batch_sent`
+* `bisn_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
+* `bisn_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
 
 == Frequently Asked Questions ==
 
@@ -90,7 +90,7 @@ Every email has a one-click unsubscribe link. No login needed.
 The sender checks stock before each batch. If the product is out of stock again, remaining emails are skipped.
 
 = Does it handle cached pages? =
-WooCommerce and popular caching plugins already purge product pages when stock changes. The plugin also fires an `instock_notifier_cache_purge_product` hook if you need custom purge logic (e.g. Varnish or a CDN).
+WooCommerce and popular caching plugins already purge product pages when stock changes. The plugin also fires an `bisn_cache_purge_product` hook if you need custom purge logic (e.g. Varnish or a CDN).
 
 == Screenshots ==
 1. Subscription form on an out-of-stock product page.
@@ -100,6 +100,11 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.1.0 =
+* Renamed internal prefix from `isn_` to `bisn_` for WordPress.org compliance.
+* Moved inline JavaScript to `wp_add_inline_script()` for Content Security Policy compatibility.
+* Added `wp_kses()` sanitization to the subscription form output.
 
 = 1.0.29 =
 * Simplified token generation to use `wp_generate_password()` (no dependency on wp_salt).
@@ -111,8 +116,8 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 
 = 1.0.28 =
 * Added database index on `unsubscribe_token` column for faster token lookups.
-* Added `instock_notifier_email_product_url` filter to email templates for URL customization.
-* Added `instock_notifier_dashboard_after_stats` action hook for extending the dashboard.
+* Added `bisn_email_product_url` filter to email templates for URL customization.
+* Added `bisn_dashboard_after_stats` action hook for extending the dashboard.
 * Added SKU column to the Top Products table on the Dashboard tab.
 
 = 1.0.8 =

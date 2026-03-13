@@ -18,7 +18,7 @@ use BeltoftInStockNotifier\Support\Options;
  */
 class LogViewer {
 
-	const SOURCE = 'instock-notifier';
+	const SOURCE = 'bisn';
 
 	/**
 	 * Write a log entry via WooCommerce logger.

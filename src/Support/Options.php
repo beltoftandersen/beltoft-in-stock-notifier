@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Options {
 
-	const OPTION = 'isn_options';
+	const OPTION = 'bisn_options';
 
 	/**
 	 * Static cache for options.
@@ -35,7 +35,7 @@ class Options {
 			'admin_init',
 			function () {
 				register_setting(
-					'isn_settings_group',
+					'bisn_settings_group',
 					self::OPTION,
 					array(
 						'type'              => 'array',

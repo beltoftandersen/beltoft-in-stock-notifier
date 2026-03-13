@@ -29,7 +29,7 @@ class NotificationSender {
 	 */
 	public static function init() {
 		add_action( NotificationQueue::ACTION_HOOK, array( __CLASS__, 'process_batch' ), 10, 2 );
-		add_action( 'isn_daily_cleanup', array( __CLASS__, 'cleanup' ) );
+		add_action( 'bisn_daily_cleanup', array( __CLASS__, 'cleanup' ) );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class NotificationSender {
 			 * @param object      $sub     Subscription record.
 			 * @param \WC_Product $product Product object.
 			 */
-			do_action( 'instock_notifier_before_notification_sent', $sub, $product );
+			do_action( 'bisn_before_notification_sent', $sub, $product );
 
 			$unsub_url = TokenManager::get_url( $sub->unsubscribe_token );
 
@@ -105,7 +105,7 @@ class NotificationSender {
 				 * @param object      $sub     Subscription record.
 				 * @param \WC_Product $product Product object.
 				 */
-				do_action( 'instock_notifier_after_notification_sent', $sub, $product );
+				do_action( 'bisn_after_notification_sent', $sub, $product );
 			} else {
 				LogViewer::log( 'FAIL email=' . $sub->email . ' product=' . $product_id, 'error' );
 			}
@@ -134,7 +134,7 @@ class NotificationSender {
 		 * @param int         $product_id Product ID.
 		 * @param \WC_Product $product    Product object.
 		 */
-		do_action( 'instock_notifier_after_batch_sent', $sent_count, $product_id, $product );
+		do_action( 'bisn_after_batch_sent', $sent_count, $product_id, $product );
 
 		LogViewer::log( 'BATCH_DONE product=' . $product_id . ' sent=' . $sent_count );
 
@@ -155,8 +155,8 @@ class NotificationSender {
 	 */
 	private static function get_email_instance() {
 		$emails = WC()->mailer()->get_emails();
-		if ( isset( $emails['ISN_Back_In_Stock'] ) ) {
-			return $emails['ISN_Back_In_Stock'];
+		if ( isset( $emails['BISN_Back_In_Stock'] ) ) {
+			return $emails['BISN_Back_In_Stock'];
 		}
 		return new BackInStockEmail();
 	}

@@ -38,7 +38,7 @@ class Handler {
 	 * @return void
 	 */
 	public static function listen() {
-		if ( ! isset( $_GET['isn_action'] ) || 'unsubscribe' !== $_GET['isn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['bisn_action'] ) || 'unsubscribe' !== $_GET['bisn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 
@@ -70,7 +70,7 @@ class Handler {
 
 		/* POST = perform the unsubscribe. */
 		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] ) {
-			if ( ! isset( $_POST['isn_unsub_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['isn_unsub_nonce'] ) ), 'isn_unsubscribe_' . $token ) ) {
+			if ( ! isset( $_POST['bisn_unsub_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['bisn_unsub_nonce'] ) ), 'bisn_unsubscribe_' . $token ) ) {
 				wp_die(
 					esc_html__( 'Security check failed. Please try the link again.', 'beltoft-in-stock-notifier' ),
 					esc_html__( 'Unsubscribe', 'beltoft-in-stock-notifier' ),
@@ -91,15 +91,15 @@ class Handler {
 		/* GET = show confirmation page with POST form. */
 		$action_url = esc_url( add_query_arg(
 			array(
-				'isn_action' => 'unsubscribe',
-				'token'      => $token,
+				'bisn_action' => 'unsubscribe',
+				'token'       => $token,
 			),
 			home_url( '/' )
 		) );
 
 		$html  = '<p>' . esc_html__( 'Click the button below to confirm you want to unsubscribe from back-in-stock notifications for this product.', 'beltoft-in-stock-notifier' ) . '</p>';
 		$html .= '<form method="post" action="' . $action_url . '">';
-		$html .= '<input type="hidden" name="isn_unsub_nonce" value="' . esc_attr( wp_create_nonce( 'isn_unsubscribe_' . $token ) ) . '" />';
+		$html .= '<input type="hidden" name="bisn_unsub_nonce" value="' . esc_attr( wp_create_nonce( 'bisn_unsubscribe_' . $token ) ) . '" />';
 		$html .= '<p><button type="submit" style="padding:10px 24px;background:#0073aa;color:#fff;border:none;border-radius:3px;cursor:pointer;font-size:14px;">';
 		$html .= esc_html__( 'Confirm Unsubscribe', 'beltoft-in-stock-notifier' );
 		$html .= '</button></p>';

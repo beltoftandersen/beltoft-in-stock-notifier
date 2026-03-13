@@ -31,7 +31,7 @@ class SettingsTab {
 		}
 
 		echo '<form method="post" action="' . esc_url( admin_url( 'options.php' ) ) . '">';
-		settings_fields( 'isn_settings_group' );
+		settings_fields( 'bisn_settings_group' );
 
 		/* ── General ────────────────────────────────────────── */
 		echo '<h2>' . esc_html__( 'General', 'beltoft-in-stock-notifier' ) . '</h2>';
@@ -121,10 +121,10 @@ class SettingsTab {
 		$name  = Options::OPTION . '[' . $key . ']';
 		$value = isset( $opts[ $key ] ) ? $opts[ $key ] : '';
 
-		echo '<tr><th scope="row"><label for="isn_' . esc_attr( $key ) . '">';
+		echo '<tr><th scope="row"><label for="bisn_' . esc_attr( $key ) . '">';
 		echo esc_html( $label );
 		echo '</label></th><td>';
-		echo '<input type="text" id="isn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="regular-text" />';
+		echo '<input type="text" id="bisn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="regular-text" />';
 		if ( $desc ) {
 			echo '<p class="description">' . esc_html( $desc ) . '</p>';
 		}
@@ -144,10 +144,10 @@ class SettingsTab {
 		$name  = Options::OPTION . '[' . $key . ']';
 		$value = isset( $opts[ $key ] ) ? $opts[ $key ] : '0';
 
-		echo '<tr><th scope="row"><label for="isn_' . esc_attr( $key ) . '">';
+		echo '<tr><th scope="row"><label for="bisn_' . esc_attr( $key ) . '">';
 		echo esc_html( $label );
 		echo '</label></th><td>';
-		echo '<input type="number" id="isn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="small-text" min="0" />';
+		echo '<input type="number" id="bisn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" class="small-text" min="0" />';
 		if ( $desc ) {
 			echo '<p class="description">' . esc_html( $desc ) . '</p>';
 		}
@@ -167,10 +167,10 @@ class SettingsTab {
 		$name  = Options::OPTION . '[' . $key . ']';
 		$value = isset( $opts[ $key ] ) ? $opts[ $key ] : '';
 
-		echo '<tr><th scope="row"><label for="isn_' . esc_attr( $key ) . '">';
+		echo '<tr><th scope="row"><label for="bisn_' . esc_attr( $key ) . '">';
 		echo esc_html( $label );
 		echo '</label></th><td>';
-		echo '<textarea id="isn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" rows="4" class="large-text">';
+		echo '<textarea id="bisn_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" rows="4" class="large-text">';
 		echo esc_textarea( $value );
 		echo '</textarea>';
 		if ( $desc ) {

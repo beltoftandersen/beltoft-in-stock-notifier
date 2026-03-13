@@ -36,7 +36,7 @@ class SubscriptionsTab {
 		echo '<form method="get">';
 		echo '<input type="hidden" name="page" value="' . esc_attr( AdminPage::PAGE_SLUG ) . '" />';
 		echo '<input type="hidden" name="tab" value="subscriptions" />';
-		$table->search_box( esc_html__( 'Search Email', 'beltoft-in-stock-notifier' ), 'isn-search' );
+		$table->search_box( esc_html__( 'Search Email', 'beltoft-in-stock-notifier' ), 'bisn-search' );
 		$table->display();
 		echo '</form>';
 	}
@@ -50,14 +50,14 @@ class SubscriptionsTab {
 	 */
 	private static function handle_bulk_actions() {
 		// Handle single-row delete via row action link.
-		if ( isset( $_GET['isn_action'], $_GET['isn_id'] ) && 'delete' === $_GET['isn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			check_admin_referer( 'isn_delete_' . absint( $_GET['isn_id'] ) );
+		if ( isset( $_GET['bisn_action'], $_GET['bisn_id'] ) && 'delete' === $_GET['bisn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			check_admin_referer( 'bisn_delete_' . absint( $_GET['bisn_id'] ) );
 
 			if ( ! current_user_can( 'manage_woocommerce' ) ) {
 				wp_die( esc_html__( 'You do not have permission to do this.', 'beltoft-in-stock-notifier' ) );
 			}
 
-			$count = Repository::bulk_delete( array( absint( $_GET['isn_id'] ) ) );
+			$count = Repository::bulk_delete( array( absint( $_GET['bisn_id'] ) ) );
 			if ( $count ) {
 				echo '<div class="notice notice-success"><p>' . esc_html__( 'Subscription deleted.', 'beltoft-in-stock-notifier' ) . '</p></div>';
 			}
@@ -65,8 +65,8 @@ class SubscriptionsTab {
 		}
 
 		// Handle "Delete All" action.
-		if ( isset( $_REQUEST['isn_bulk_action'] ) && 'delete_all' === $_REQUEST['isn_bulk_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			check_admin_referer( 'isn_bulk_action_nonce' );
+		if ( isset( $_REQUEST['bisn_bulk_action'] ) && 'delete_all' === $_REQUEST['bisn_bulk_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			check_admin_referer( 'bisn_bulk_action_nonce' );
 
 			if ( ! current_user_can( 'manage_woocommerce' ) ) {
 				wp_die( esc_html__( 'You do not have permission to do this.', 'beltoft-in-stock-notifier' ) );
@@ -80,18 +80,18 @@ class SubscriptionsTab {
 			return;
 		}
 
-		if ( ! isset( $_REQUEST['isn_bulk_action'] ) || empty( $_REQUEST['isn_ids'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_REQUEST['bisn_bulk_action'] ) || empty( $_REQUEST['bisn_ids'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 
-		check_admin_referer( 'isn_bulk_action_nonce' );
+		check_admin_referer( 'bisn_bulk_action_nonce' );
 
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_die( esc_html__( 'You do not have permission to do this.', 'beltoft-in-stock-notifier' ) );
 		}
 
-		$action = sanitize_text_field( wp_unslash( $_REQUEST['isn_bulk_action'] ) );
-		$ids    = array_map( 'absint', (array) $_REQUEST['isn_ids'] );
+		$action = sanitize_text_field( wp_unslash( $_REQUEST['bisn_bulk_action'] ) );
+		$ids    = array_map( 'absint', (array) $_REQUEST['bisn_ids'] );
 
 		switch ( $action ) {
 			case 'delete':
@@ -264,18 +264,15 @@ class SubscriptionsListTable extends \WP_List_Table {
 		echo '</div>';
 
 		echo '<div class="alignleft actions" style="margin-left:8px;">';
-		echo '<select name="isn_bulk_action">';
+		echo '<select name="bisn_bulk_action">';
 		echo '<option value="">' . esc_html__( 'Bulk Actions', 'beltoft-in-stock-notifier' ) . '</option>';
 		echo '<option value="delete">' . esc_html__( 'Delete Selected', 'beltoft-in-stock-notifier' ) . '</option>';
 		echo '<option value="delete_all">' . esc_html__( 'Delete All Subscriptions', 'beltoft-in-stock-notifier' ) . '</option>';
 		echo '<option value="mark_notified">' . esc_html__( 'Mark as Notified', 'beltoft-in-stock-notifier' ) . '</option>';
 		echo '</select>';
-		wp_nonce_field( 'isn_bulk_action_nonce' );
-		submit_button( __( 'Apply', 'beltoft-in-stock-notifier' ), 'action', 'isn_apply_bulk', false );
+		wp_nonce_field( 'bisn_bulk_action_nonce' );
+		submit_button( __( 'Apply', 'beltoft-in-stock-notifier' ), 'action', 'bisn_apply_bulk', false );
 		echo '</div>';
-
-		// Inline JS to confirm destructive "Delete All" action.
-		echo '<script>document.querySelector(\'[name="isn_apply_bulk"]\')&&document.querySelector(\'[name="isn_apply_bulk"]\').addEventListener("click",function(e){var s=document.querySelector(\'[name="isn_bulk_action"]\');if(s&&s.value==="delete_all"&&!confirm("' . esc_js( __( 'Are you sure you want to delete ALL subscriptions? This cannot be undone.', 'beltoft-in-stock-notifier' ) ) . '"))e.preventDefault();});</script>';
 	}
 
 	/**
@@ -285,7 +282,7 @@ class SubscriptionsListTable extends \WP_List_Table {
 	 * @return string
 	 */
 	protected function column_cb( $item ) {
-		return '<input type="checkbox" name="isn_ids[]" value="' . absint( $item->id ) . '" />';
+		return '<input type="checkbox" name="bisn_ids[]" value="' . absint( $item->id ) . '" />';
 	}
 
 	/**
@@ -298,14 +295,14 @@ class SubscriptionsListTable extends \WP_List_Table {
 		$delete_url = wp_nonce_url(
 			add_query_arg(
 				array(
-					'page'       => AdminPage::PAGE_SLUG,
-					'tab'        => 'subscriptions',
-					'isn_action' => 'delete',
-					'isn_id'     => absint( $item->id ),
+					'page'        => AdminPage::PAGE_SLUG,
+					'tab'         => 'subscriptions',
+					'bisn_action' => 'delete',
+					'bisn_id'     => absint( $item->id ),
 				),
 				admin_url( 'admin.php' )
 			),
-			'isn_delete_' . absint( $item->id )
+			'bisn_delete_' . absint( $item->id )
 		);
 
 		$actions = array(

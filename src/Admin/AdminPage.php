@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AdminPage {
 
-	const PAGE_SLUG = 'isn-notifier';
+	const PAGE_SLUG = 'bisn-notifier';
 
 	const STATUS_COLORS = array(
 		'active'       => '#0073aa',
@@ -66,7 +66,7 @@ class AdminPage {
 		 *
 		 * @param array<string, string> $tabs Slug => label pairs.
 		 */
-		$tabs = apply_filters( 'instock_notifier_admin_tabs', $tabs );
+		$tabs = apply_filters( 'bisn_admin_tabs', $tabs );
 
 		$current_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'dashboard'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! isset( $tabs[ $current_tab ] ) ) {
@@ -92,7 +92,7 @@ class AdminPage {
 		}
 		echo '</nav>';
 
-		echo '<div class="isn-tab-content" style="margin-top:20px;">';
+		echo '<div class="bisn-tab-content" style="margin-top:20px;">';
 
 		switch ( $current_tab ) {
 			case 'dashboard':
@@ -110,7 +110,7 @@ class AdminPage {
 				 *
 				 * @param string $current_tab The active tab slug.
 				 */
-				do_action( "instock_notifier_admin_tab_{$current_tab}" );
+				do_action( "bisn_admin_tab_{$current_tab}" );
 				break;
 		}
 

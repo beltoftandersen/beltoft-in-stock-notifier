@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * All $wpdb CRUD operations for the isn_subscriptions table.
+ * All $wpdb CRUD operations for the bisn_subscriptions table.
  */
 class Repository {
 
@@ -36,7 +36,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$existing = $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT id, status FROM {$wpdb->prefix}isn_subscriptions WHERE product_id = %d AND variation_id = %d AND email = %s",
+				"SELECT id, status FROM {$wpdb->prefix}bisn_subscriptions WHERE product_id = %d AND variation_id = %d AND email = %s",
 				$product_id,
 				$variation_id,
 				$email
@@ -51,7 +51,7 @@ class Repository {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query(
 				$wpdb->prepare(
-					"UPDATE {$wpdb->prefix}isn_subscriptions SET status = %s, quantity_requested = %d, ip_address = %s, gdpr_consent = %d, unsubscribe_token = %s, created_at = %s, notified_at = NULL WHERE id = %d",
+					"UPDATE {$wpdb->prefix}bisn_subscriptions SET status = %s, quantity_requested = %d, ip_address = %s, gdpr_consent = %d, unsubscribe_token = %s, created_at = %s, notified_at = NULL WHERE id = %d",
 					'active',
 					$quantity,
 					$ip,
@@ -66,7 +66,7 @@ class Repository {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$inserted = $wpdb->insert(
-			$wpdb->prefix . 'isn_subscriptions',
+			$wpdb->prefix . 'bisn_subscriptions',
 			array(
 				'product_id'         => $product_id,
 				'variation_id'       => $variation_id,
@@ -99,7 +99,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT * FROM {$wpdb->prefix}isn_subscriptions WHERE product_id = %d AND variation_id = %d AND status = %s ORDER BY created_at ASC LIMIT %d OFFSET %d",
+				"SELECT * FROM {$wpdb->prefix}bisn_subscriptions WHERE product_id = %d AND variation_id = %d AND status = %s ORDER BY created_at ASC LIMIT %d OFFSET %d",
 				absint( $product_id ),
 				absint( $variation_id ),
 				'active',
@@ -121,7 +121,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$count = $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT COUNT(*) FROM {$wpdb->prefix}isn_subscriptions WHERE product_id = %d AND status = %s",
+				"SELECT COUNT(*) FROM {$wpdb->prefix}bisn_subscriptions WHERE product_id = %d AND status = %s",
 				absint( $product_id ),
 				'active'
 			)
@@ -141,7 +141,7 @@ class Repository {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return (bool) $wpdb->update(
-			$wpdb->prefix . 'isn_subscriptions',
+			$wpdb->prefix . 'bisn_subscriptions',
 			array(
 				'status'      => 'notified',
 				'notified_at' => current_time( 'mysql', true ),
@@ -163,7 +163,7 @@ class Repository {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return (bool) $wpdb->update(
-			$wpdb->prefix . 'isn_subscriptions',
+			$wpdb->prefix . 'bisn_subscriptions',
 			array( 'status' => 'unsubscribed' ),
 			array(
 				'unsubscribe_token' => sanitize_text_field( $token ),
@@ -186,7 +186,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * FROM {$wpdb->prefix}isn_subscriptions WHERE unsubscribe_token = %s",
+				"SELECT * FROM {$wpdb->prefix}bisn_subscriptions WHERE unsubscribe_token = %s",
 				sanitize_text_field( $token )
 			)
 		);
@@ -211,7 +211,7 @@ class Repository {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$deleted = (int) $wpdb->query(
 				$wpdb->prepare(
-					"DELETE FROM {$wpdb->prefix}isn_subscriptions WHERE status = %s AND notified_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL %d DAY) LIMIT 1000",
+					"DELETE FROM {$wpdb->prefix}bisn_subscriptions WHERE status = %s AND notified_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL %d DAY) LIMIT 1000",
 					'notified',
 					$days
 				)
@@ -233,7 +233,7 @@ class Repository {
 		// No user input in this query; table name is from trusted $wpdb->prefix.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$rows = $wpdb->get_results(
-			"SELECT status, COUNT(*) as cnt FROM {$wpdb->prefix}isn_subscriptions GROUP BY status"
+			"SELECT status, COUNT(*) as cnt FROM {$wpdb->prefix}bisn_subscriptions GROUP BY status"
 		);
 
 		$counts = array(
@@ -260,7 +260,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$total = (int) $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT COUNT(*) FROM (SELECT product_id, variation_id FROM {$wpdb->prefix}isn_subscriptions WHERE status = %s GROUP BY product_id, variation_id) AS t",
+				"SELECT COUNT(*) FROM (SELECT product_id, variation_id FROM {$wpdb->prefix}bisn_subscriptions WHERE status = %s GROUP BY product_id, variation_id) AS t",
 				'active'
 			)
 		);
@@ -268,7 +268,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$items = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT product_id, variation_id, COUNT(*) as sub_count FROM {$wpdb->prefix}isn_subscriptions WHERE status = %s GROUP BY product_id, variation_id ORDER BY sub_count DESC LIMIT %d OFFSET %d",
+				"SELECT product_id, variation_id, COUNT(*) as sub_count FROM {$wpdb->prefix}bisn_subscriptions WHERE status = %s GROUP BY product_id, variation_id ORDER BY sub_count DESC LIMIT %d OFFSET %d",
 				'active',
 				absint( $limit ),
 				absint( $offset )
@@ -326,7 +326,7 @@ class Repository {
 		$offset   = isset( $args['offset'] ) ? absint( $args['offset'] ) : 0;
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$count_query = "SELECT COUNT(*) FROM {$wpdb->prefix}isn_subscriptions WHERE {$where_sql}";
+		$count_query = "SELECT COUNT(*) FROM {$wpdb->prefix}bisn_subscriptions WHERE {$where_sql}";
 		if ( ! empty( $values ) ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$total = (int) $wpdb->get_var( $wpdb->prepare( $count_query, ...$values ) );
@@ -336,7 +336,7 @@ class Repository {
 		}
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$select_query = "SELECT * FROM {$wpdb->prefix}isn_subscriptions WHERE {$where_sql} ORDER BY {$orderby} {$order} LIMIT %d OFFSET %d";
+		$select_query = "SELECT * FROM {$wpdb->prefix}bisn_subscriptions WHERE {$where_sql} ORDER BY {$orderby} {$order} LIMIT %d OFFSET %d";
 		$select_vals  = array_merge( $values, array( $per_page, $offset ) );
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -364,7 +364,7 @@ class Repository {
 
 		$placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-		return (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}isn_subscriptions WHERE id IN ($placeholders)", ...$ids ) );
+		return (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->prefix}bisn_subscriptions WHERE id IN ($placeholders)", ...$ids ) );
 	}
 
 	/**
@@ -383,7 +383,7 @@ class Repository {
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		return (int) $wpdb->query( "DELETE FROM {$wpdb->prefix}isn_subscriptions" );
+		return (int) $wpdb->query( "DELETE FROM {$wpdb->prefix}bisn_subscriptions" );
 	}
 
 	/**
@@ -403,7 +403,7 @@ class Repository {
 		$placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
 		$now          = current_time( 'mysql', true );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
-		return (int) $wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->prefix}isn_subscriptions SET status = 'notified', notified_at = %s WHERE id IN ($placeholders)", $now, ...$ids ) );
+		return (int) $wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->prefix}bisn_subscriptions SET status = 'notified', notified_at = %s WHERE id IN ($placeholders)", $now, ...$ids ) );
 	}
 
 	/**
@@ -418,7 +418,7 @@ class Repository {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return (int) $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT COUNT(*) FROM {$wpdb->prefix}isn_subscriptions WHERE ip_address = %s AND created_at > DATE_SUB(UTC_TIMESTAMP(), INTERVAL 1 HOUR)",
+				"SELECT COUNT(*) FROM {$wpdb->prefix}bisn_subscriptions WHERE ip_address = %s AND created_at > DATE_SUB(UTC_TIMESTAMP(), INTERVAL 1 HOUR)",
 				sanitize_text_field( $ip )
 			)
 		);

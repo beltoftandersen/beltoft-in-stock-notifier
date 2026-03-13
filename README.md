@@ -2,7 +2,7 @@
 
 Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
 
-- Stable version: 1.0.29
+- Stable version: 1.1.0
 - Requires: WordPress 5.8+, PHP 7.4+, WooCommerce 6.0+
 - Author: beltoft.net
 - Text domain: beltoft-in-stock-notifier
@@ -71,19 +71,19 @@ Override the template by copying `templates/emails/back-in-stock.php` to your th
 ### Logging
 
 - Logs are written via WooCommerce's built-in logger.
-- View logs under WooCommerce > Status > Logs (source: `instock-notifier`).
+- View logs under WooCommerce > Status > Logs (source: `bisn`).
 - Disable logging in the plugin settings for production.
 
 ## Hooks & Filters
 
 Developers can extend the plugin:
 
-- `instock_notifier_form_html` / `instock_notifier_form_fields` / `instock_notifier_form_heading_text`
-- `instock_notifier_before_subscription` / `instock_notifier_after_subscription`
-- `instock_notifier_validate_subscription`
-- `instock_notifier_before_notification_sent` / `instock_notifier_after_notification_sent` / `instock_notifier_after_batch_sent`
-- `instock_notifier_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
-- `instock_notifier_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
+- `bisn_form_html` / `bisn_form_fields` / `bisn_form_heading_text`
+- `bisn_before_subscription` / `bisn_after_subscription`
+- `bisn_validate_subscription`
+- `bisn_before_notification_sent` / `bisn_after_notification_sent` / `bisn_after_batch_sent`
+- `bisn_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
+- `bisn_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
 
 ## Translations
 
@@ -91,6 +91,12 @@ Developers can extend the plugin:
 - Translation template: `languages/beltoft-in-stock-notifier.pot`
 
 ## Changelog
+
+### 1.1.0
+
+- Renamed internal prefix from `isn_` to `bisn_` for WordPress.org compliance.
+- Moved inline JavaScript to `wp_add_inline_script()` for Content Security Policy compatibility.
+- Added `wp_kses()` sanitization to the subscription form output.
 
 ### 1.0.29
 
@@ -105,8 +111,8 @@ Developers can extend the plugin:
 ### 1.0.28
 
 - Added database index on `unsubscribe_token` column for faster token lookups.
-- Added `instock_notifier_email_product_url` filter to email templates for URL customization.
-- Added `instock_notifier_dashboard_after_stats` action hook for extending the dashboard.
+- Added `bisn_email_product_url` filter to email templates for URL customization.
+- Added `bisn_dashboard_after_stats` action hook for extending the dashboard.
 - Added SKU column to the Top Products table on the Dashboard tab.
 
 ### 1.0.8

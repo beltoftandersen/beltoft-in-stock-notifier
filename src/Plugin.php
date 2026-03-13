@@ -60,8 +60,8 @@ class Plugin {
 	 * @return void
 	 */
 	private static function maybe_upgrade_db() {
-		$current = get_option( 'isn_db_version', '1.0.0' );
-		if ( version_compare( $current, ISN_DB_VERSION, '>=' ) ) {
+		$current = get_option( 'bisn_db_version', '1.0.0' );
+		if ( version_compare( $current, BISN_DB_VERSION, '>=' ) ) {
 			return;
 		}
 		Installer::activate();
@@ -74,7 +74,7 @@ class Plugin {
 	 * @return array
 	 */
 	public static function register_email_class( $email_classes ) {
-		$email_classes['ISN_Back_In_Stock'] = new BackInStockEmail();
+		$email_classes['BISN_Back_In_Stock'] = new BackInStockEmail();
 		return $email_classes;
 	}
 
@@ -85,24 +85,27 @@ class Plugin {
 	 * @return void
 	 */
 	public static function enqueue_admin_assets( $hook_suffix ) {
-		if ( 'woocommerce_page_isn-notifier' !== $hook_suffix ) {
+		if ( 'woocommerce_page_bisn-notifier' !== $hook_suffix ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'isn-admin',
-			ISN_URL . 'assets/css/admin.css',
+			'bisn-admin',
+			BISN_URL . 'assets/css/admin.css',
 			array(),
-			ISN_VERSION
+			BISN_VERSION
 		);
 
 		wp_enqueue_script(
-			'isn-admin',
-			ISN_URL . 'assets/js/admin.js',
+			'bisn-admin',
+			BISN_URL . 'assets/js/admin.js',
 			array( 'jquery' ),
-			ISN_VERSION,
+			BISN_VERSION,
 			true
 		);
+
+		$js = 'document.querySelector(\'[name="bisn_apply_bulk"]\')&&document.querySelector(\'[name="bisn_apply_bulk"]\').addEventListener("click",function(e){var s=document.querySelector(\'[name="bisn_bulk_action"]\');if(s&&s.value==="delete_all"&&!confirm("' . esc_js( __( 'Are you sure you want to delete ALL subscriptions? This cannot be undone.', 'beltoft-in-stock-notifier' ) ) . '"))e.preventDefault();});';
+		wp_add_inline_script( 'bisn-admin', $js );
 	}
 
 	/**

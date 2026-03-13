@@ -32,7 +32,7 @@ if ( null === $isn_stock_qty ) {
 /* translators: 1: product name, 2: site name */
 echo esc_html( sprintf( __( 'Good news! %1$s is back in stock at %2$s.', 'beltoft-in-stock-notifier' ), $product->get_name(), get_bloginfo( 'name' ) ) ) . "\n\n";
 
-$isn_product_url = apply_filters( 'instock_notifier_email_product_url', $product->get_permalink(), $product, $email );
+$isn_product_url = apply_filters( 'bisn_email_product_url', $product->get_permalink(), $product, $email );
 echo esc_html__( 'Shop Now:', 'beltoft-in-stock-notifier' ) . ' ' . esc_url( $isn_product_url ) . "\n\n";
 
 /* translators: %s: stock quantity or "Available" */

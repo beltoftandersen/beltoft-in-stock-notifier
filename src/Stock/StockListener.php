@@ -90,7 +90,7 @@ class StockListener {
 		 *
 		 * @param array $statuses Stock status values.
 		 */
-		$trigger_statuses = apply_filters( 'instock_notifier_stock_status_triggers', array( 'instock', 'onbackorder' ) );
+		$trigger_statuses = apply_filters( 'bisn_stock_status_triggers', array( 'instock', 'onbackorder' ) );
 
 		return in_array( $status, $trigger_statuses, true );
 	}
@@ -147,11 +147,11 @@ class StockListener {
 		 * @param int    $product_id Product ID.
 		 * @param string $url        Product permalink.
 		 */
-		do_action( 'instock_notifier_cache_purge_product', $product_id, get_permalink( $product_id ) );
+		do_action( 'bisn_cache_purge_product', $product_id, get_permalink( $product_id ) );
 
 		if ( $parent_id && $parent_id !== $product_id ) {
 			/** This action is documented above. */
-			do_action( 'instock_notifier_cache_purge_product', $parent_id, get_permalink( $parent_id ) );
+			do_action( 'bisn_cache_purge_product', $parent_id, get_permalink( $parent_id ) );
 		}
 	}
 }

@@ -52,7 +52,8 @@ class FormRenderer {
 			return;
 		}
 
-		echo self::get_form_html( $product->get_id(), 0 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// get_form_html() already applies wp_kses() with allowed_form_html().
+		echo self::get_form_html( $product->get_id(), 0 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in get_form_html().
 	}
 
 	/**
@@ -72,7 +73,8 @@ class FormRenderer {
 			return;
 		}
 
-		echo self::get_form_html( $product->get_id(), 0, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// get_form_html() already applies wp_kses() with allowed_form_html().
+		echo self::get_form_html( $product->get_id(), 0, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in get_form_html().
 	}
 
 	/**
@@ -81,34 +83,103 @@ class FormRenderer {
 	 * @return void
 	 */
 	public static function enqueue_assets() {
-		if ( wp_script_is( 'isn-frontend', 'enqueued' ) ) {
+		if ( wp_script_is( 'bisn-frontend', 'enqueued' ) ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'isn-frontend',
-			ISN_URL . 'assets/css/frontend.css',
+			'bisn-frontend',
+			BISN_URL . 'assets/css/frontend.css',
 			array(),
-			ISN_VERSION
+			BISN_VERSION
 		);
 
 		wp_enqueue_script(
-			'isn-frontend',
-			ISN_URL . 'assets/js/frontend.js',
+			'bisn-frontend',
+			BISN_URL . 'assets/js/frontend.js',
 			array( 'jquery' ),
-			ISN_VERSION,
+			BISN_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'isn-frontend',
-			'isn_vars',
+			'bisn-frontend',
+			'bisn_vars',
 			array(
 				'ajax_url'      => admin_url( 'admin-ajax.php' ),
-				'nonce'         => wp_create_nonce( 'isn_subscribe_nonce' ),
+				'nonce'         => wp_create_nonce( 'bisn_subscribe_nonce' ),
 				'error_generic' => esc_html__( 'An error occurred.', 'beltoft-in-stock-notifier' ),
 				'error_network' => esc_html__( 'An error occurred. Please try again.', 'beltoft-in-stock-notifier' ),
 			)
+		);
+	}
+
+	/**
+	 * Custom kses allowlist for the subscription form HTML.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
+	public static function allowed_form_html() {
+		return array(
+			'div'    => array(
+				'class'       => true,
+				'id'          => true,
+				'style'       => true,
+				'role'        => true,
+				'aria-live'   => true,
+				'aria-hidden' => true,
+				'data-*'      => true,
+			),
+			'p'      => array(
+				'class' => true,
+				'id'    => true,
+				'style' => true,
+			),
+			'form'   => array(
+				'class'      => true,
+				'id'         => true,
+				'style'      => true,
+				'data-*'     => true,
+			),
+			'input'  => array(
+				'class'        => true,
+				'id'           => true,
+				'style'        => true,
+				'name'         => true,
+				'type'         => true,
+				'value'        => true,
+				'placeholder'  => true,
+				'required'     => true,
+				'min'          => true,
+				'checked'      => true,
+				'tabindex'     => true,
+				'autocomplete' => true,
+				'data-*'       => true,
+			),
+			'button' => array(
+				'class' => true,
+				'id'    => true,
+				'style' => true,
+				'type'  => true,
+				'name'  => true,
+				'value' => true,
+				'data-*' => true,
+			),
+			'label'  => array(
+				'class' => true,
+				'id'    => true,
+				'style' => true,
+				'for'   => true,
+			),
+			'span'   => array(
+				'class'       => true,
+				'id'          => true,
+				'style'       => true,
+				'role'        => true,
+				'aria-live'   => true,
+				'aria-hidden' => true,
+				'data-*'      => true,
+			),
 		);
 	}
 
@@ -130,57 +201,57 @@ class FormRenderer {
 		 * @param int    $product_id Product ID.
 		 */
 		$heading = apply_filters(
-			'instock_notifier_form_heading_text',
+			'bisn_form_heading_text',
 			__( 'Want to know when it\'s back? Leave your email below.', 'beltoft-in-stock-notifier' ),
 			$product_id
 		);
 
 		$hide_attr = $hidden ? ' style="display:none;"' : '';
-		$html  = '<div class="isn-notify-form"' . $hide_attr . '>';
-		$html .= '<p class="isn-form-heading">' . esc_html( $heading ) . '</p>';
-		$html .= '<form class="isn-form" data-isn-form="1">';
+		$html  = '<div class="bisn-notify-form"' . $hide_attr . '>';
+		$html .= '<p class="bisn-form-heading">' . esc_html( $heading ) . '</p>';
+		$html .= '<form class="bisn-form" data-bisn-form="1">';
 
 		/* Quantity field (optional) — above the inline row. */
 		if ( '1' === $opts['quantity_field_enabled'] ) {
-			$html .= '<div class="isn-field isn-field-quantity">';
-			$html .= '<label for="isn-quantity-' . absint( $product_id ) . '">' . esc_html__( 'Desired quantity', 'beltoft-in-stock-notifier' ) . '</label>';
-			$html .= '<input type="number" id="isn-quantity-' . absint( $product_id ) . '" name="isn_quantity" min="1" value="1" class="isn-quantity-input" />';
+			$html .= '<div class="bisn-field bisn-field-quantity">';
+			$html .= '<label for="bisn-quantity-' . absint( $product_id ) . '">' . esc_html__( 'Desired quantity', 'beltoft-in-stock-notifier' ) . '</label>';
+			$html .= '<input type="number" id="bisn-quantity-' . absint( $product_id ) . '" name="bisn_quantity" min="1" value="1" class="bisn-quantity-input" />';
 			$html .= '</div>';
 		}
 
 		/* GDPR checkbox (optional) — above the inline row. */
 		if ( '1' === $opts['gdpr_enabled'] ) {
-			$html .= '<div class="isn-field isn-field-gdpr">';
-			$html .= '<label><input type="checkbox" name="isn_gdpr" value="1" required /> ';
+			$html .= '<div class="bisn-field bisn-field-gdpr">';
+			$html .= '<label><input type="checkbox" name="bisn_gdpr" value="1" required /> ';
 			$html .= esc_html( $opts['gdpr_text'] );
 			$html .= '</label>';
 			$html .= '</div>';
 		}
 
 		/* Inline row: email + submit button side by side. */
-		$html .= '<div class="isn-fields-row">';
+		$html .= '<div class="bisn-fields-row">';
 
 		/* Email field — prefill for logged-in users. */
 		$user_email = is_user_logged_in() ? wp_get_current_user()->user_email : '';
-		$html .= '<label for="isn-email-' . absint( $product_id ) . '" class="screen-reader-text">' . esc_html__( 'Email address', 'beltoft-in-stock-notifier' ) . '</label>';
-		$html .= '<input type="email" id="isn-email-' . absint( $product_id ) . '" name="isn_email" placeholder="' . esc_attr__( 'Your email address', 'beltoft-in-stock-notifier' ) . '" value="' . esc_attr( $user_email ) . '" required class="isn-email-input" />';
+		$html .= '<label for="bisn-email-' . absint( $product_id ) . '" class="screen-reader-text">' . esc_html__( 'Email address', 'beltoft-in-stock-notifier' ) . '</label>';
+		$html .= '<input type="email" id="bisn-email-' . absint( $product_id ) . '" name="bisn_email" placeholder="' . esc_attr__( 'Your email address', 'beltoft-in-stock-notifier' ) . '" value="' . esc_attr( $user_email ) . '" required class="bisn-email-input" />';
 
 		/* Submit button. */
-		$html .= '<button type="submit" class="isn-submit">';
+		$html .= '<button type="submit" class="bisn-submit">';
 		$html .= esc_html( $opts['button_text'] );
 		$html .= '</button>';
 
-		$html .= '</div>'; /* /.isn-fields-row */
+		$html .= '</div>'; /* /.bisn-fields-row */
 
 		/* Honeypot. */
 		$html .= '<div style="display:none !important;" aria-hidden="true">';
-		$html .= '<input type="text" name="isn_website" tabindex="-1" autocomplete="off" />';
+		$html .= '<input type="text" name="bisn_website" tabindex="-1" autocomplete="off" />';
 		$html .= '</div>';
 
 		/* Hidden fields. */
-		$html .= '<input type="hidden" name="isn_nonce" value="" />';
-		$html .= '<input type="hidden" name="isn_product_id" value="' . absint( $product_id ) . '" />';
-		$html .= '<input type="hidden" name="isn_variation_id" value="' . absint( $variation_id ) . '" />';
+		$html .= '<input type="hidden" name="bisn_nonce" value="" />';
+		$html .= '<input type="hidden" name="bisn_product_id" value="' . absint( $product_id ) . '" />';
+		$html .= '<input type="hidden" name="bisn_variation_id" value="' . absint( $variation_id ) . '" />';
 
 		/**
 		 * Allow adding extra form fields.
@@ -188,13 +259,13 @@ class FormRenderer {
 		 * @param string $fields     Extra HTML.
 		 * @param int    $product_id Product ID.
 		 */
-		$extra = apply_filters( 'instock_notifier_form_fields', '', $product_id );
+		$extra = apply_filters( 'bisn_form_fields', '', $product_id );
 		if ( $extra ) {
 			$html .= wp_kses_post( $extra );
 		}
 
 		$html .= '</form>';
-		$html .= '<div class="isn-form-message" role="status" aria-live="polite"></div>';
+		$html .= '<div class="bisn-form-message" role="status" aria-live="polite"></div>';
 
 		$html .= '</div>';
 
@@ -204,6 +275,8 @@ class FormRenderer {
 		 * @param string $html       Full form HTML.
 		 * @param int    $product_id Product ID.
 		 */
-		return apply_filters( 'instock_notifier_form_html', $html, $product_id );
+		$html = apply_filters( 'bisn_form_html', $html, $product_id );
+
+		return wp_kses( $html, self::allowed_form_html() );
 	}
 }

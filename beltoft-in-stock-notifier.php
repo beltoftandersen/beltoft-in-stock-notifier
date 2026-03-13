@@ -3,7 +3,7 @@
  * Plugin Name:       Beltoft In-Stock Notifier for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/beltoft-in-stock-notifier/
  * Description:       Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
- * Version:           1.0.29
+ * Version:           1.1.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            beltoft.net
@@ -40,11 +40,11 @@ spl_autoload_register(
 );
 
 /* ── Constants ─────────────────────────────────────────────────── */
-define( 'ISN_VERSION', '1.0.29' );
-define( 'ISN_PATH', plugin_dir_path( __FILE__ ) );
-define( 'ISN_URL', plugin_dir_url( __FILE__ ) );
-define( 'ISN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'ISN_DB_VERSION', '1.1.3' );
+define( 'BISN_VERSION', '1.1.0' );
+define( 'BISN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BISN_URL', plugin_dir_url( __FILE__ ) );
+define( 'BISN_BASENAME', plugin_basename( __FILE__ ) );
+define( 'BISN_DB_VERSION', '1.1.3' );
 
 /* ── Activation / deactivation ─────────────────────────────────── */
 register_activation_hook(
@@ -61,14 +61,14 @@ register_activation_hook(
 register_deactivation_hook(
 	__FILE__,
 	function () {
-		wp_clear_scheduled_hook( 'isn_daily_cleanup' );
+		wp_clear_scheduled_hook( 'bisn_daily_cleanup' );
 		/* Unschedule all Action Scheduler actions. */
 		if ( function_exists( 'as_unschedule_all_actions' ) ) {
-			as_unschedule_all_actions( 'isn_send_notification' );
+			as_unschedule_all_actions( 'bisn_send_notification' );
 		}
 		/* Clean up legacy cron hook from pre-1.0.8. */
-		wp_clear_scheduled_hook( 'isn_send_notifications' );
-		delete_transient( 'isn_processing_lock' );
+		wp_clear_scheduled_hook( 'bisn_send_notifications' );
+		delete_transient( 'bisn_processing_lock' );
 	}
 );
 
@@ -85,9 +85,9 @@ add_action(
 
 /* ── Settings link on Plugins page ─────────────────────────────── */
 add_filter(
-	'plugin_action_links_' . ISN_BASENAME,
+	'plugin_action_links_' . BISN_BASENAME,
 	function ( $links ) {
-		$url           = admin_url( 'admin.php?page=isn-notifier' );
+		$url           = admin_url( 'admin.php?page=bisn-notifier' );
 		$settings_link = '<a href="' . esc_url( $url ) . '">'
 			. esc_html__( 'Settings', 'beltoft-in-stock-notifier' )
 			. '</a>';

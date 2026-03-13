@@ -32,7 +32,7 @@ $isn_stock_qty   = $product->get_stock_quantity();
 if ( null === $isn_stock_qty ) {
 	$isn_stock_qty = __( 'Available', 'beltoft-in-stock-notifier' );
 }
-$isn_product_url = apply_filters( 'instock_notifier_email_product_url', $product->get_permalink(), $product, $email );
+$isn_product_url = apply_filters( 'bisn_email_product_url', $product->get_permalink(), $product, $email );
 $isn_site_name   = get_bloginfo( 'name' );
 $isn_site_url    = home_url( '/' );
 

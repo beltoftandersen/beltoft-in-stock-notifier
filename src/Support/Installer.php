@@ -34,7 +34,7 @@ class Installer {
 	 */
 	private static function create_table() {
 		global $wpdb;
-		$table   = $wpdb->prefix . 'isn_subscriptions';
+		$table   = $wpdb->prefix . 'bisn_subscriptions';
 		$charset = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE {$table} (
@@ -65,7 +65,7 @@ class Installer {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 
-		update_option( 'isn_db_version', ISN_DB_VERSION );
+		update_option( 'bisn_db_version', BISN_DB_VERSION );
 	}
 
 	/**
@@ -85,8 +85,8 @@ class Installer {
 	 * @return void
 	 */
 	private static function schedule_cron() {
-		if ( ! wp_next_scheduled( 'isn_daily_cleanup' ) ) {
-			wp_schedule_event( time() + DAY_IN_SECONDS, 'daily', 'isn_daily_cleanup' );
+		if ( ! wp_next_scheduled( 'bisn_daily_cleanup' ) ) {
+			wp_schedule_event( time() + DAY_IN_SECONDS, 'daily', 'bisn_daily_cleanup' );
 		}
 	}
 }

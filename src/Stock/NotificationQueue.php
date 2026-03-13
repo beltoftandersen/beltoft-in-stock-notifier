@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class NotificationQueue {
 
-	const ACTION_HOOK = 'isn_send_notification';
+	const ACTION_HOOK = 'bisn_send_notification';
 
 	/**
 	 * Enqueue a product for notification sending.
@@ -40,7 +40,7 @@ class NotificationQueue {
 		}
 
 		if ( function_exists( 'as_schedule_single_action' ) ) {
-			$action_id = as_schedule_single_action( time() + 30, self::ACTION_HOOK, $args, 'instock-notifier' );
+			$action_id = as_schedule_single_action( time() + 30, self::ACTION_HOOK, $args, 'bisn' );
 			if ( ! $action_id ) {
 				\BeltoftInStockNotifier\Logging\LogViewer::log( 'SCHEDULE_FAIL product=' . $args['product_id'] . ' variation=' . $args['variation_id'], 'error' );
 			}
@@ -69,7 +69,7 @@ class NotificationQueue {
 		$delay = max( 1, absint( $delay ) );
 
 		if ( function_exists( 'as_schedule_single_action' ) ) {
-			$action_id = as_schedule_single_action( time() + $delay, self::ACTION_HOOK, $args, 'instock-notifier' );
+			$action_id = as_schedule_single_action( time() + $delay, self::ACTION_HOOK, $args, 'bisn' );
 			if ( ! $action_id ) {
 				\BeltoftInStockNotifier\Logging\LogViewer::log( 'SCHEDULE_FAIL product=' . $args['product_id'] . ' variation=' . $args['variation_id'], 'error' );
 			}

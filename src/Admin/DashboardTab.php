@@ -28,7 +28,7 @@ class DashboardTab {
 	public static function render() {
 		self::handle_manual_send();
 
-		if ( ! empty( $_GET['isn_sent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_GET['bisn_sent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			echo '<div class="notice notice-success is-dismissible"><p>';
 			echo esc_html__( 'Notifications queued. They will be sent shortly via cron.', 'beltoft-in-stock-notifier' );
 			echo '</p></div>';
@@ -36,7 +36,7 @@ class DashboardTab {
 
 		$counts = Repository::count_by_status();
 
-		echo '<div class="isn-stats-cards">';
+		echo '<div class="bisn-stats-cards">';
 		$c = AdminPage::STATUS_COLORS;
 		self::stat_card( __( 'Active Subscribers', 'beltoft-in-stock-notifier' ), $counts['active'], $c['active'] );
 		echo '</div>';
@@ -46,13 +46,13 @@ class DashboardTab {
 		 *
 		 * Used by Pro to inject conversion tracking stats.
 		 */
-		do_action( 'instock_notifier_dashboard_after_stats' );
+		do_action( 'bisn_dashboard_after_stats' );
 
 		/* ── Product search ────────────────────────────────── */
 		wp_enqueue_script( 'wc-enhanced-select' );
 		wp_enqueue_style( 'woocommerce_admin_styles' );
 
-		$search_product_id = isset( $_GET['isn_product'] ) ? absint( $_GET['isn_product'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$search_product_id = isset( $_GET['bisn_product'] ) ? absint( $_GET['bisn_product'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		echo '<h2>' . esc_html__( 'Look Up Product Subscribers', 'beltoft-in-stock-notifier' ) . '</h2>';
 		echo '<form method="get" style="margin-bottom:20px;">';
@@ -67,12 +67,12 @@ class DashboardTab {
 				$search_product_name = $p->get_name() . ( $sku ? ' (SKU: ' . $sku . ')' : '' ) . ' (#' . $search_product_id . ')';
 			}
 		}
-		echo '<select class="wc-product-search" name="isn_product" data-placeholder="' . esc_attr__( 'Search by product name or SKU...', 'beltoft-in-stock-notifier' ) . '" data-action="woocommerce_json_search_products_and_variations" data-allow_clear="true" style="min-width:350px;">';
+		echo '<select class="wc-product-search" name="bisn_product" data-placeholder="' . esc_attr__( 'Search by product name or SKU...', 'beltoft-in-stock-notifier' ) . '" data-action="woocommerce_json_search_products_and_variations" data-allow_clear="true" style="min-width:350px;">';
 		if ( $search_product_id && $search_product_name ) {
 			echo '<option value="' . absint( $search_product_id ) . '" selected>' . esc_html( $search_product_name ) . '</option>';
 		}
 		echo '</select> ';
-		submit_button( __( 'Look Up', 'beltoft-in-stock-notifier' ), 'secondary', 'isn_lookup', false );
+		submit_button( __( 'Look Up', 'beltoft-in-stock-notifier' ), 'secondary', 'bisn_lookup', false );
 		echo '</form>';
 
 		if ( $search_product_id ) {
@@ -202,13 +202,13 @@ class DashboardTab {
 					array(
 						'page'         => AdminPage::PAGE_SLUG,
 						'tab'          => 'dashboard',
-						'isn_action'   => 'manual_send',
+						'bisn_action'  => 'manual_send',
 						'product_id'   => $row->product_id,
 						'variation_id' => $row->variation_id,
 					),
 					admin_url( 'admin.php' )
 				),
-				'isn_manual_send'
+				'bisn_manual_send'
 			);
 			echo '<a href="' . esc_url( $send_url ) . '" class="button button-small" onclick="return confirm(\'' . esc_js( __( 'Send notifications to all active subscribers for this product?', 'beltoft-in-stock-notifier' ) ) . '\');">';
 			echo esc_html__( 'Send Notifications', 'beltoft-in-stock-notifier' );
@@ -259,11 +259,11 @@ class DashboardTab {
 	 * @return void
 	 */
 	private static function handle_manual_send() {
-		if ( ! isset( $_GET['isn_action'] ) || 'manual_send' !== $_GET['isn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['bisn_action'] ) || 'manual_send' !== $_GET['bisn_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 
-		check_admin_referer( 'isn_manual_send' );
+		check_admin_referer( 'bisn_manual_send' );
 
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_die( esc_html__( 'You do not have permission to do this.', 'beltoft-in-stock-notifier' ) );
@@ -283,7 +283,7 @@ class DashboardTab {
 			array(
 				'page'         => AdminPage::PAGE_SLUG,
 				'tab'          => 'dashboard',
-				'isn_sent'     => '1',
+				'bisn_sent'    => '1',
 				'product_id'   => $product_id,
 			),
 			admin_url( 'admin.php' )
@@ -385,9 +385,9 @@ class DashboardTab {
 	 * @return void
 	 */
 	private static function stat_card( $label, $value, $color ) {
-		echo '<div class="isn-stat-card" style="border-left-color:' . esc_attr( $color ) . ';">';
-		echo '<div class="isn-stat-value">' . absint( $value ) . '</div>';
-		echo '<div class="isn-stat-label">' . esc_html( $label ) . '</div>';
+		echo '<div class="bisn-stat-card" style="border-left-color:' . esc_attr( $color ) . ';">';
+		echo '<div class="bisn-stat-value">' . absint( $value ) . '</div>';
+		echo '<div class="bisn-stat-label">' . esc_html( $label ) . '</div>';
 		echo '</div>';
 	}
 

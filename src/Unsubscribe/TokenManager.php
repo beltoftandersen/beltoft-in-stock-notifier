@@ -35,8 +35,8 @@ class TokenManager {
 	public static function get_url( $token ) {
 		return add_query_arg(
 			array(
-				'isn_action' => 'unsubscribe',
-				'token'      => rawurlencode( $token ),
+				'bisn_action' => 'unsubscribe',
+				'token'       => rawurlencode( $token ),
 			),
 			home_url( '/' )
 		);
