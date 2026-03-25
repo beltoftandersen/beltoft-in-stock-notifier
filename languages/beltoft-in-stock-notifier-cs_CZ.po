@@ -1,0 +1,166 @@
+# Czech translation for Beltoft In-Stock Notifier for WooCommerce
+# Copyright (C) 2026 beltoftnet
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/beltoft-in-stock-notifier\n"
+"Last-Translator: \n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-25T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-25 00:00+0000\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Domain: beltoft-in-stock-notifier\n"
+
+#: templates/emails/back-in-stock.php:33
+#: templates/emails/plain/back-in-stock.php:29
+msgid "Available"
+msgstr "Skladem"
+
+#. translators: 1: product name, 2: site URL, 3: site name
+#: templates/emails/back-in-stock.php:51
+#, php-format
+msgid "Good news! <strong>%1$s</strong> is back in stock at <a href=\"%2$s\">%3$s</a>."
+msgstr "Dobrá zpráva! Produkt <strong>%1$s</strong> je opět na skladě na <a href=\"%2$s\">%3$s</a>."
+
+#: templates/emails/back-in-stock.php:58
+msgid "Shop Now"
+msgstr "Jít nakupovat"
+
+#. translators: %s: stock quantity or "Available"
+#: templates/emails/back-in-stock.php:65
+#: templates/emails/plain/back-in-stock.php:38
+#, php-format
+msgid "Current stock: %s"
+msgstr "Momentálně skladem: %s"
+
+#. translators: 1: site name, 2: unsubscribe URL
+#: templates/emails/back-in-stock.php:72
+#, php-format
+msgid "You received this email because you subscribed to a back-in-stock notification on %1$s. <a href=\"%2$s\">Unsubscribe</a>"
+msgstr "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání dostupnosti produktu %1$s. <a href=\"%2$s\">Odhlásit se</a>"
+
+#. translators: 1: product name, 2: site name
+#: templates/emails/plain/back-in-stock.php:33
+#, php-format
+msgid "Good news! %1$s is back in stock at %2$s."
+msgstr "Dobrá zpráva! Produkt %1$s je opět na skladě na %2$s."
+
+#: templates/emails/plain/back-in-stock.php:35
+msgid "Shop Now:"
+msgstr "Jít nakupovat:"
+
+#. translators: %s: site name
+#: templates/emails/plain/back-in-stock.php:43
+#, php-format
+msgid "You received this email because you subscribed to a back-in-stock notification on %s."
+msgstr "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání dostupnosti produktu %s."
+
+#: templates/emails/plain/back-in-stock.php:44
+msgid "Unsubscribe:"
+msgstr "Odhlásit se:"
+
+#: src/Email/BackInStockEmail.php:43
+msgid "Back In Stock"
+msgstr "Produkt opět naskladněn"
+
+#: src/Email/BackInStockEmail.php:64
+msgid "{product_name} is back in stock!"
+msgstr "{product_name} je opět na skladě!"
+
+#: src/Email/BackInStockEmail.php:73
+msgid "It's back in stock!"
+msgstr "Produkt opět naskladněn!"
+
+#: src/Frontend/FormRenderer.php:134
+msgid "Want to know when it's back? Leave your email below."
+msgstr "Chcete vědět kdy bude produkt zase skladem?"
+
+#: src/Frontend/FormRenderer.php:146
+msgid "Desired quantity"
+msgstr "Požadované množství"
+
+#: src/Frontend/FormRenderer.php:165
+msgid "Email address"
+msgstr "E-mailová adresa"
+
+#: src/Frontend/FormRenderer.php:166
+msgid "Your email address"
+msgstr "Váš e-mail"
+
+#: src/Subscription/Validator.php:39
+msgid "Please enter a valid email address."
+msgstr "Zadejte prosím platnou e-mailovou adresu."
+
+#: src/Subscription/Validator.php:45
+msgid "Invalid product."
+msgstr "Neplatný produkt."
+
+#: src/Subscription/Validator.php:51
+msgid "Please accept the consent checkbox."
+msgstr "Prosím zaškrtněte souhlas."
+
+#: src/Subscription/Validator.php:58
+msgid "Too many requests. Please try again later."
+msgstr "Příliš mnoho požadavků. Zkuste to prosím později."
+
+#: src/Unsubscribe/Handler.php:65
+msgid "You have already been unsubscribed."
+msgstr "Již jste byli odhlášeni."
+
+#: src/Unsubscribe/Handler.php:85
+msgid "You have been successfully unsubscribed. You will no longer receive back-in-stock notifications for this product."
+msgstr "Byli jste úspěšně odhlášeni. Již nebudete dostávat oznámení o dostupnosti tohoto produktu."
+
+#: src/Unsubscribe/Handler.php:86
+msgid "Unsubscribed"
+msgstr "Odhlášeno"
+
+#: src/Unsubscribe/Handler.php:100
+msgid "Click the button below to confirm you want to unsubscribe from back-in-stock notifications for this product."
+msgstr "Klikněte na tlačítko níže pro potvrzení odhlášení z oznámení o dostupnosti tohoto produktu."
+
+#: src/Unsubscribe/Handler.php:104
+msgid "Confirm Unsubscribe"
+msgstr "Potvrdit odhlášení"
+
+#: src/Unsubscribe/Handler.php:48
+#: src/Unsubscribe/Handler.php:57
+msgid "Invalid unsubscribe link."
+msgstr "Neplatný odkaz pro odhlášení."
+
+#: src/Unsubscribe/Handler.php:75
+msgid "Security check failed. Please try the link again."
+msgstr "Bezpečnostní kontrola selhala. Zkuste odkaz znovu."
+
+#: src/Frontend/AjaxHandler.php:43
+msgid "Security check failed. Please refresh the page."
+msgstr "Bezpečnostní kontrola selhala. Obnovte prosím stránku."
+
+#: src/Frontend/AjaxHandler.php:90
+msgid "Something went wrong. Please try again."
+msgstr "Něco se pokazilo. Zkuste to prosím znovu."
+
+#: src/Frontend/FormRenderer.php:109
+msgid "An error occurred."
+msgstr "Došlo k chybě."
+
+#: src/Frontend/FormRenderer.php:110
+msgid "An error occurred. Please try again."
+msgstr "Došlo k chybě. Zkuste to prosím znovu."
+
+#: src/Email/BackInStockEmail.php:44
+msgid "Sent to customers who subscribed for a back-in-stock notification when the product returns to stock."
+msgstr "Zasláno zákazníkům, kteří se přihlásili k odběru oznámení o dostupnosti produktu."
+
+#: src/Email/BackInStockEmail.php:180
+msgid "Sample Product"
+msgstr "Ukázkový produkt"
+
+#: src/Subscription/Validator.php:33
+msgid "Spam detected."
+msgstr "Detekován spam."
