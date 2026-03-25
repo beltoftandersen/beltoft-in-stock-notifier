@@ -4,7 +4,7 @@ Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,9 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.1.1 =
+* Added Czech (cs_CZ) translation.
 
 = 1.1.0 =
 * Renamed internal prefix from `isn_` to `bisn_` for WordPress.org compliance.
