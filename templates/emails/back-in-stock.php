@@ -8,7 +8,11 @@
  * @package BeltoftInStockNotifier
  * @var \WC_Product $product         Product object.
  * @var string      $email_heading   Email heading.
- * @var string      $unsubscribe_url Unsubscribe URL.
+ * @var string      $body_text       Body text (with placeholders replaced).
+ * @var string      $button_text     Button text (with placeholders replaced).
+ * @var string      $footer_text      Footer text (with placeholders replaced).
+ * @var string      $unsubscribe_text Unsubscribe link text (with placeholders replaced).
+ * @var string      $unsubscribe_url  Unsubscribe URL.
  * @var bool        $sent_to_admin   Whether sent to admin.
  * @var bool        $plain_text      Whether plain text.
  * @var \WC_Email   $email           Email object.
@@ -33,8 +37,6 @@ if ( null === $isn_stock_qty ) {
 	$isn_stock_qty = __( 'Available', 'beltoft-in-stock-notifier' );
 }
 $isn_product_url = apply_filters( 'bisn_email_product_url', $product->get_permalink(), $product, $email );
-$isn_site_name   = get_bloginfo( 'name' );
-$isn_site_url    = home_url( '/' );
 
 if ( $isn_image_url ) :
 	?>
@@ -46,16 +48,12 @@ if ( $isn_image_url ) :
 <?php endif; ?>
 
 <p>
-	<?php
-	/* translators: 1: product name, 2: site URL, 3: site name */
-	$isn_intro = sprintf( __( 'Good news! <strong>%1$s</strong> is back in stock at <a href="%2$s">%3$s</a>.', 'beltoft-in-stock-notifier' ), esc_html( $product->get_name() ), esc_url( $isn_site_url ), esc_html( $isn_site_name ) );
-	echo wp_kses_post( $isn_intro );
-	?>
+	<?php echo esc_html( $body_text ); ?>
 </p>
 
 <p style="text-align: center; margin: 1.5em 0;">
 	<a href="<?php echo esc_url( $isn_product_url ); ?>" style="display: inline-block; padding: 12px 24px; background-color: <?php echo esc_attr( get_option( 'woocommerce_email_base_color', '#7f54b3' ) ); ?>; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: bold;">
-		<?php echo esc_html__( 'Shop Now', 'beltoft-in-stock-notifier' ); ?>
+		<?php echo esc_html( $button_text ); ?>
 	</a>
 </p>
 
@@ -67,11 +65,8 @@ if ( $isn_image_url ) :
 </p>
 
 <p style="font-size: 12px; color: #888;">
-	<?php
-	/* translators: 1: site name, 2: unsubscribe URL */
-	$isn_footer = sprintf( __( 'You received this email because you subscribed to a back-in-stock notification on %1$s. <a href="%2$s">Unsubscribe</a>', 'beltoft-in-stock-notifier' ), esc_html( $isn_site_name ), esc_url( $unsubscribe_url ) );
-	echo wp_kses_post( $isn_footer );
-	?>
+	<?php echo esc_html( $footer_text ); ?>
+	<a href="<?php echo esc_url( $unsubscribe_url ); ?>"><?php echo esc_html( $unsubscribe_text ); ?></a>
 </p>
 
 <?php

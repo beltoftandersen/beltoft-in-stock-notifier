@@ -1,15 +1,15 @@
-# Copyright (C) 2026 beltoftnet
+# Copyright (C) 2026 beltoft.net
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.0.29\n"
+"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/beltoft-in-stock-notifier\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-18T13:22:25+00:00\n"
+"POT-Creation-Date: 2026-03-27T18:00:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: beltoft-in-stock-notifier\n"
@@ -71,57 +71,65 @@ msgstr ""
 msgid "Active Subscribers"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:50
+#: src/Admin/DashboardTab.php:57
 msgid "Look Up Product Subscribers"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:63
+#: src/Admin/DashboardTab.php:70
 msgid "Search by product name or SKU..."
 msgstr ""
 
-#: src/Admin/DashboardTab.php:68
+#: src/Admin/DashboardTab.php:75
 msgid "Look Up"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:76
+#: src/Admin/DashboardTab.php:83
 msgid "Top Products by Active Subscriptions"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:88
+#: src/Admin/DashboardTab.php:95
 msgid "No active subscriptions yet."
 msgstr ""
 
-#: src/Admin/DashboardTab.php:117
+#: src/Admin/DashboardTab.php:136
 #: src/Admin/SubscriptionsTab.php:157
 msgid "Product"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:118
+#: src/Admin/DashboardTab.php:137
+msgid "SKU"
+msgstr ""
+
+#: src/Admin/DashboardTab.php:139
+msgid "Brand"
+msgstr ""
+
+#: src/Admin/DashboardTab.php:141
 msgid "Variation"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:119
+#: src/Admin/DashboardTab.php:142
 msgid "Subscribers"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:120
+#: src/Admin/DashboardTab.php:143
 msgid "Stock Status"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:121
+#: src/Admin/DashboardTab.php:144
 msgid "Actions"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:176
+#: src/Admin/DashboardTab.php:213
 msgid "Send notifications to all active subscribers for this product?"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:177
+#: src/Admin/DashboardTab.php:214
 msgid "Send Notifications"
 msgstr ""
 
 #. translators: %s: total number of products
-#: src/Admin/DashboardTab.php:197
+#: src/Admin/DashboardTab.php:234
 #, php-format
 msgid "%s product"
 msgid_plural "%s products"
@@ -129,55 +137,61 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: current page, 2: total pages
-#: src/Admin/DashboardTab.php:207
+#: src/Admin/DashboardTab.php:244
 #, php-format
 msgid "%1$d of %2$d"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:232
+#: src/Admin/DashboardTab.php:269
 #: src/Admin/SubscriptionsTab.php:57
 #: src/Admin/SubscriptionsTab.php:72
 #: src/Admin/SubscriptionsTab.php:90
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: src/Admin/DashboardTab.php:267
+#: src/Admin/DashboardTab.php:304
 msgid "Product not found."
 msgstr ""
 
-#: src/Admin/DashboardTab.php:307
+#. translators: 1: displayed count, 2: total count
+#: src/Admin/DashboardTab.php:347
+#, php-format
+msgid "Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full results."
+msgstr ""
+
+#: src/Admin/DashboardTab.php:352
 msgid "No subscribers for this product."
 msgstr ""
 
-#: src/Admin/DashboardTab.php:311
+#: src/Admin/DashboardTab.php:356
 #: src/Admin/SubscriptionsTab.php:156
 msgid "Email"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:312
+#: src/Admin/DashboardTab.php:357
 #: src/Admin/SubscriptionsTab.php:158
 msgid "Status"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:313
+#: src/Admin/DashboardTab.php:358
 #: src/Admin/SubscriptionsTab.php:159
 msgid "Subscribed"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:314
+#: src/Admin/DashboardTab.php:359
 #: src/Admin/SubscriptionsTab.php:160
 msgid "Notified"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:357
+#: src/Admin/DashboardTab.php:402
 msgid "In stock"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:358
+#: src/Admin/DashboardTab.php:403
 msgid "Out of stock"
 msgstr ""
 
-#: src/Admin/DashboardTab.php:359
+#: src/Admin/DashboardTab.php:404
 msgid "On backorder"
 msgstr ""
 
@@ -206,82 +220,90 @@ msgid "Show Quantity Field"
 msgstr ""
 
 #: src/Admin/SettingsTab.php:43
+msgid "Form Heading"
+msgstr ""
+
+#: src/Admin/SettingsTab.php:43
+msgid "Text shown above the subscription form."
+msgstr ""
+
+#: src/Admin/SettingsTab.php:44
 msgid "Button Text"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:48
+#: src/Admin/SettingsTab.php:49
 msgid "GDPR / Consent"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:51
+#: src/Admin/SettingsTab.php:52
 msgid "Require GDPR Consent"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:52
+#: src/Admin/SettingsTab.php:53
 msgid "Consent Text"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:57
+#: src/Admin/SettingsTab.php:58
 msgid "Messages"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:60
+#: src/Admin/SettingsTab.php:61
 msgid "Success Message"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:61
+#: src/Admin/SettingsTab.php:62
 msgid "Already Subscribed Message"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:66
+#: src/Admin/SettingsTab.php:67
 msgid "Performance"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:69
+#: src/Admin/SettingsTab.php:70
 msgid "Batch Size"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:69
+#: src/Admin/SettingsTab.php:70
 msgid "Emails per cron run (1-500)."
 msgstr ""
 
-#: src/Admin/SettingsTab.php:70
+#: src/Admin/SettingsTab.php:71
 msgid "Throttle (seconds)"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:70
+#: src/Admin/SettingsTab.php:71
 msgid "Delay between each email (0 = no delay)."
 msgstr ""
 
-#: src/Admin/SettingsTab.php:71
+#: src/Admin/SettingsTab.php:72
 msgid "Rate Limit per IP"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:71
+#: src/Admin/SettingsTab.php:72
 msgid "Max subscriptions per IP per hour."
 msgstr ""
 
-#: src/Admin/SettingsTab.php:76
+#: src/Admin/SettingsTab.php:77
 msgid "Advanced"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:79
+#: src/Admin/SettingsTab.php:80
 msgid "Cleanup After (days)"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:79
+#: src/Admin/SettingsTab.php:80
 msgid "Delete notified subscriptions older than this. 0 = never delete."
 msgstr ""
 
-#: src/Admin/SettingsTab.php:80
-msgid "Disable Logging"
+#: src/Admin/SettingsTab.php:81
+msgid "Enable Logging"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:81
+#: src/Admin/SettingsTab.php:82
 msgid "Remove Data on Uninstall"
 msgstr ""
 
-#: src/Admin/SettingsTab.php:81
+#: src/Admin/SettingsTab.php:82
 msgid "Delete all plugin data when the plugin is deleted."
 msgstr ""
 
@@ -310,51 +332,47 @@ msgid_plural "%d subscriptions marked as notified."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Admin/SubscriptionsTab.php:258
+#: src/Admin/SubscriptionsTab.php:256
 msgid "All statuses"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:265
+#: src/Admin/SubscriptionsTab.php:263
 msgid "Filter"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:270
+#: src/Admin/SubscriptionsTab.php:268
 msgid "Bulk Actions"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:271
+#: src/Admin/SubscriptionsTab.php:269
 msgid "Delete Selected"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:272
+#: src/Admin/SubscriptionsTab.php:270
 msgid "Delete All Subscriptions"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:273
+#: src/Admin/SubscriptionsTab.php:271
 msgid "Mark as Notified"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:276
+#: src/Admin/SubscriptionsTab.php:274
 msgid "Apply"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:280
-msgid "Are you sure you want to delete ALL subscriptions? This cannot be undone."
-msgstr ""
-
-#: src/Admin/SubscriptionsTab.php:314
+#: src/Admin/SubscriptionsTab.php:309
 msgid "Delete this subscription?"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:314
+#: src/Admin/SubscriptionsTab.php:309
 msgid "Delete"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:336
+#: src/Admin/SubscriptionsTab.php:331
 msgid "SKU:"
 msgstr ""
 
-#: src/Admin/SubscriptionsTab.php:391
+#: src/Admin/SubscriptionsTab.php:386
 msgid "No subscriptions found."
 msgstr ""
 
@@ -374,37 +392,76 @@ msgstr ""
 msgid "It's back in stock!"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:180
+#. translators: 1: product name, 2: site name
+#: src/Email/BackInStockEmail.php:83
+msgid "Good news! {product_name} is back in stock at {site_title}."
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:92
+msgid "Shop Now"
+msgstr ""
+
+#. translators: 1: site name
+#: src/Email/BackInStockEmail.php:102
+msgid "You received this email because you subscribed to a back-in-stock notification on {site_title}."
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:111
+#: src/Unsubscribe/Handler.php:49
+#: src/Unsubscribe/Handler.php:58
+#: src/Unsubscribe/Handler.php:66
+#: src/Unsubscribe/Handler.php:76
+#: src/Unsubscribe/Handler.php:110
+msgid "Unsubscribe"
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:274
 msgid "Sample Product"
 msgstr ""
 
 #. translators: %s: list of available placeholders
-#: src/Email/BackInStockEmail.php:191
+#: src/Email/BackInStockEmail.php:285
 #, php-format
 msgid "Available placeholders: %s"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:195
+#: src/Email/BackInStockEmail.php:289
 msgid "Enable/Disable"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:197
+#: src/Email/BackInStockEmail.php:291
 msgid "Enable this email notification"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:201
+#: src/Email/BackInStockEmail.php:295
 msgid "Subject"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:209
+#: src/Email/BackInStockEmail.php:303
 msgid "Email heading"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:217
+#: src/Email/BackInStockEmail.php:311
+msgid "Body text"
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:320
+msgid "Button text"
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:328
+msgid "Footer text"
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:337
+msgid "Unsubscribe link text"
+msgstr ""
+
+#: src/Email/BackInStockEmail.php:345
 msgid "Email type"
 msgstr ""
 
-#: src/Email/BackInStockEmail.php:219
+#: src/Email/BackInStockEmail.php:347
 msgid "Choose which format of email to send."
 msgstr ""
 
@@ -416,28 +473,28 @@ msgstr ""
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: src/Frontend/FormRenderer.php:109
+#: src/Frontend/FormRenderer.php:111
 msgid "An error occurred."
 msgstr ""
 
-#: src/Frontend/FormRenderer.php:110
+#: src/Frontend/FormRenderer.php:112
 msgid "An error occurred. Please try again."
 msgstr ""
 
-#: src/Frontend/FormRenderer.php:134
-msgid "Want to know when it's back? Leave your email below."
-msgstr ""
-
-#: src/Frontend/FormRenderer.php:146
+#: src/Frontend/FormRenderer.php:219
 msgid "Desired quantity"
 msgstr ""
 
-#: src/Frontend/FormRenderer.php:165
+#: src/Frontend/FormRenderer.php:238
 msgid "Email address"
 msgstr ""
 
-#: src/Frontend/FormRenderer.php:166
+#: src/Frontend/FormRenderer.php:239
 msgid "Your email address"
+msgstr ""
+
+#: src/Plugin.php:107
+msgid "Are you sure you want to delete ALL subscriptions? This cannot be undone."
 msgstr ""
 
 #: src/Subscription/Validator.php:33
@@ -465,14 +522,6 @@ msgstr ""
 msgid "Invalid unsubscribe link."
 msgstr ""
 
-#: src/Unsubscribe/Handler.php:49
-#: src/Unsubscribe/Handler.php:58
-#: src/Unsubscribe/Handler.php:66
-#: src/Unsubscribe/Handler.php:76
-#: src/Unsubscribe/Handler.php:110
-msgid "Unsubscribe"
-msgstr ""
-
 #: src/Unsubscribe/Handler.php:65
 msgid "You have already been unsubscribed."
 msgstr ""
@@ -497,50 +546,14 @@ msgstr ""
 msgid "Confirm Unsubscribe"
 msgstr ""
 
-#: templates/emails/back-in-stock.php:33
-#: templates/emails/plain/back-in-stock.php:29
+#: templates/emails/back-in-stock.php:37
+#: templates/emails/plain/back-in-stock.php:33
 msgid "Available"
 msgstr ""
 
-#. translators: 1: product name, 2: site URL, 3: site name
-#: templates/emails/back-in-stock.php:51
-#, php-format
-msgid "Good news! <strong>%1$s</strong> is back in stock at <a href=\"%2$s\">%3$s</a>."
-msgstr ""
-
-#: templates/emails/back-in-stock.php:58
-msgid "Shop Now"
-msgstr ""
-
 #. translators: %s: stock quantity or "Available"
-#: templates/emails/back-in-stock.php:65
-#: templates/emails/plain/back-in-stock.php:38
+#: templates/emails/back-in-stock.php:63
+#: templates/emails/plain/back-in-stock.php:42
 #, php-format
 msgid "Current stock: %s"
-msgstr ""
-
-#. translators: 1: site name, 2: unsubscribe URL
-#: templates/emails/back-in-stock.php:72
-#, php-format
-msgid "You received this email because you subscribed to a back-in-stock notification on %1$s. <a href=\"%2$s\">Unsubscribe</a>"
-msgstr ""
-
-#. translators: 1: product name, 2: site name
-#: templates/emails/plain/back-in-stock.php:33
-#, php-format
-msgid "Good news! %1$s is back in stock at %2$s."
-msgstr ""
-
-#: templates/emails/plain/back-in-stock.php:35
-msgid "Shop Now:"
-msgstr ""
-
-#. translators: %s: site name
-#: templates/emails/plain/back-in-stock.php:43
-#, php-format
-msgid "You received this email because you subscribed to a back-in-stock notification on %s."
-msgstr ""
-
-#: templates/emails/plain/back-in-stock.php:44
-msgid "Unsubscribe:"
 msgstr ""

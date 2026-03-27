@@ -2,7 +2,7 @@
 
 Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
 
-- Stable version: 1.1.1
+- Stable version: 1.2.0
 - Requires: WordPress 5.8+, PHP 7.4+, WooCommerce 6.0+
 - Author: beltoft.net
 - Text domain: beltoft-in-stock-notifier
@@ -43,7 +43,7 @@ Stock changes are detected regardless of source: admin UI, REST API, CLI, or ERP
 1. Upload the plugin to `wp-content/plugins/` or install from a ZIP.
 2. Activate the plugin.
 3. Go to **WooCommerce > In-Stock Notifier** to configure.
-4. Optionally adjust the email under **WooCommerce > Settings > Emails > Back In Stock**.
+4. Optionally adjust the email text under **WooCommerce > Settings > Emails > Back In Stock** (body text, button text, footer text).
 
 ## Configuration
 
@@ -58,9 +58,9 @@ The form shows automatically on out-of-stock product pages. To place it manually
 
 ### Email Template
 
-Notifications use WooCommerce's email system — same header, footer, and colours as your other store emails. Customise the subject and heading under WooCommerce > Settings > Emails > Back In Stock.
+Notifications use WooCommerce's email system — same header, footer, and colours as your other store emails. Customise the subject, heading, body text, button text, and footer text under WooCommerce > Settings > Emails > Back In Stock. Use `{product_name}` and `{site_title}` placeholders in any of these fields.
 
-Override the template by copying `templates/emails/back-in-stock.php` to your theme's `woocommerce/emails/` folder.
+For more complex customisations, override the template by copying `templates/emails/back-in-stock.php` to your theme's `woocommerce/emails/` folder.
 
 ### Batch Sending
 
@@ -91,6 +91,14 @@ Developers can extend the plugin:
 - Translation template: `languages/beltoft-in-stock-notifier.pot`
 
 ## Changelog
+
+### 1.2.0
+
+- Added editable email body text, button text, footer text, and unsubscribe link text under WooCommerce > Settings > Emails > Back In Stock.
+- Added editable form heading text under WooCommerce > In-Stock Notifier > Settings.
+- All editable email fields support `{product_name}` and `{site_title}` placeholders.
+- Translations still apply when fields are left at their defaults.
+- Changed "Disable Logging" to "Enable Logging" (off by default).
 
 ### 1.1.1
 

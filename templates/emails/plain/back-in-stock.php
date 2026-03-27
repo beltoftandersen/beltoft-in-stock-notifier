@@ -8,7 +8,11 @@
  * @package BeltoftInStockNotifier
  * @var \WC_Product $product         Product object.
  * @var string      $email_heading   Email heading.
- * @var string      $unsubscribe_url Unsubscribe URL.
+ * @var string      $body_text       Body text (with placeholders replaced).
+ * @var string      $button_text     Button text (with placeholders replaced).
+ * @var string      $footer_text      Footer text (with placeholders replaced).
+ * @var string      $unsubscribe_text Unsubscribe link text (with placeholders replaced).
+ * @var string      $unsubscribe_url  Unsubscribe URL.
  * @var bool        $sent_to_admin   Whether sent to admin.
  * @var bool        $plain_text      Whether plain text.
  * @var \WC_Email   $email           Email object.
@@ -29,17 +33,15 @@ if ( null === $isn_stock_qty ) {
 	$isn_stock_qty = __( 'Available', 'beltoft-in-stock-notifier' );
 }
 
-/* translators: 1: product name, 2: site name */
-echo esc_html( sprintf( __( 'Good news! %1$s is back in stock at %2$s.', 'beltoft-in-stock-notifier' ), $product->get_name(), get_bloginfo( 'name' ) ) ) . "\n\n";
+echo esc_html( $body_text ) . "\n\n";
 
 $isn_product_url = apply_filters( 'bisn_email_product_url', $product->get_permalink(), $product, $email );
-echo esc_html__( 'Shop Now:', 'beltoft-in-stock-notifier' ) . ' ' . esc_url( $isn_product_url ) . "\n\n";
+echo esc_html( $button_text ) . ': ' . esc_url( $isn_product_url ) . "\n\n";
 
 /* translators: %s: stock quantity or "Available" */
 echo esc_html( sprintf( __( 'Current stock: %s', 'beltoft-in-stock-notifier' ), $isn_stock_qty ) ) . "\n\n";
 
 echo "────────────────────────────────────────────\n\n";
 
-/* translators: %s: site name */
-echo esc_html( sprintf( __( 'You received this email because you subscribed to a back-in-stock notification on %s.', 'beltoft-in-stock-notifier' ), get_bloginfo( 'name' ) ) ) . "\n";
-echo esc_html__( 'Unsubscribe:', 'beltoft-in-stock-notifier' ) . ' ' . esc_url( $unsubscribe_url ) . "\n";
+echo esc_html( $footer_text ) . "\n";
+echo esc_html( $unsubscribe_text ) . ': ' . esc_url( $unsubscribe_url ) . "\n";

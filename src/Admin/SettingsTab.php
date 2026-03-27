@@ -40,6 +40,7 @@ class SettingsTab {
 		self::checkbox_row( 'enabled', __( 'Enable Notifications', 'beltoft-in-stock-notifier' ), $opts );
 		self::checkbox_row( 'form_position_enabled', __( 'Auto-place Form on Product Pages', 'beltoft-in-stock-notifier' ), $opts, __( 'Uncheck to use the [bisn_form] shortcode only.', 'beltoft-in-stock-notifier' ) );
 		self::checkbox_row( 'quantity_field_enabled', __( 'Show Quantity Field', 'beltoft-in-stock-notifier' ), $opts );
+		self::text_row( 'heading_text', __( 'Form Heading', 'beltoft-in-stock-notifier' ), $opts, __( 'Text shown above the subscription form.', 'beltoft-in-stock-notifier' ) );
 		self::text_row( 'button_text', __( 'Button Text', 'beltoft-in-stock-notifier' ), $opts );
 
 		echo '</tbody></table>';
@@ -77,7 +78,7 @@ class SettingsTab {
 		echo '<table class="form-table"><tbody>';
 
 		self::number_row( 'cleanup_days', __( 'Cleanup After (days)', 'beltoft-in-stock-notifier' ), $opts, __( 'Delete notified subscriptions older than this. 0 = never delete.', 'beltoft-in-stock-notifier' ) );
-		self::checkbox_row( 'disable_logging', __( 'Disable Logging', 'beltoft-in-stock-notifier' ), $opts );
+		self::checkbox_row( 'enable_logging', __( 'Enable Logging', 'beltoft-in-stock-notifier' ), $opts );
 		self::checkbox_row( 'cleanup_on_uninstall', __( 'Remove Data on Uninstall', 'beltoft-in-stock-notifier' ), $opts, __( 'Delete all plugin data when the plugin is deleted.', 'beltoft-in-stock-notifier' ) );
 
 		echo '</tbody></table>';

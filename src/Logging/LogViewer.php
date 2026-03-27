@@ -28,7 +28,7 @@ class LogViewer {
 	 * @return void
 	 */
 	public static function log( $message, $level = 'info' ) {
-		if ( Options::get( 'disable_logging' ) === '1' ) {
+		if ( Options::get( 'enable_logging' ) !== '1' ) {
 			return;
 		}
 

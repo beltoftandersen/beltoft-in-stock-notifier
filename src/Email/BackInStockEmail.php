@@ -74,6 +74,96 @@ class BackInStockEmail extends \WC_Email {
 	}
 
 	/**
+	 * Get default body text.
+	 *
+	 * @return string
+	 */
+	public function get_default_body_text() {
+		/* translators: 1: product name, 2: site name */
+		return __( 'Good news! {product_name} is back in stock at {site_title}.', 'beltoft-in-stock-notifier' );
+	}
+
+	/**
+	 * Get default button text.
+	 *
+	 * @return string
+	 */
+	public function get_default_button_text() {
+		return __( 'Shop Now', 'beltoft-in-stock-notifier' );
+	}
+
+	/**
+	 * Get default footer text.
+	 *
+	 * @return string
+	 */
+	public function get_default_footer_text() {
+		/* translators: 1: site name */
+		return __( 'You received this email because you subscribed to a back-in-stock notification on {site_title}.', 'beltoft-in-stock-notifier' );
+	}
+
+	/**
+	 * Get default unsubscribe text.
+	 *
+	 * @return string
+	 */
+	public function get_default_unsubscribe_text() {
+		return __( 'Unsubscribe', 'beltoft-in-stock-notifier' );
+	}
+
+	/**
+	 * Get body text with placeholders replaced.
+	 *
+	 * @return string
+	 */
+	public function get_body_text() {
+		$text = $this->get_option( 'body_text', '' );
+		if ( empty( $text ) ) {
+			$text = $this->get_default_body_text();
+		}
+		return $this->format_string( $text );
+	}
+
+	/**
+	 * Get button text with placeholders replaced.
+	 *
+	 * @return string
+	 */
+	public function get_button_text() {
+		$text = $this->get_option( 'button_text', '' );
+		if ( empty( $text ) ) {
+			$text = $this->get_default_button_text();
+		}
+		return $this->format_string( $text );
+	}
+
+	/**
+	 * Get footer text with placeholders replaced.
+	 *
+	 * @return string
+	 */
+	public function get_footer_text() {
+		$text = $this->get_option( 'footer_text', '' );
+		if ( empty( $text ) ) {
+			$text = $this->get_default_footer_text();
+		}
+		return $this->format_string( $text );
+	}
+
+	/**
+	 * Get unsubscribe link text with placeholders replaced.
+	 *
+	 * @return string
+	 */
+	public function get_unsubscribe_text() {
+		$text = $this->get_option( 'unsubscribe_text', '' );
+		if ( empty( $text ) ) {
+			$text = $this->get_default_unsubscribe_text();
+		}
+		return $this->format_string( $text );
+	}
+
+	/**
 	 * Trigger the email.
 	 *
 	 * @param \WC_Product $product         Product object.
@@ -141,12 +231,16 @@ class BackInStockEmail extends \WC_Email {
 		return wc_get_template_html(
 			$template,
 			array(
-				'product'         => $product,
-				'email_heading'   => $this->get_heading(),
-				'unsubscribe_url' => $this->unsubscribe_url ? $this->unsubscribe_url : '#',
-				'sent_to_admin'   => false,
-				'plain_text'      => $plain_text,
-				'email'           => $this,
+				'product'          => $product,
+				'email_heading'    => $this->get_heading(),
+				'body_text'        => $this->get_body_text(),
+				'button_text'      => $this->get_button_text(),
+				'footer_text'      => $this->get_footer_text(),
+				'unsubscribe_text' => $this->get_unsubscribe_text(),
+				'unsubscribe_url'  => $this->unsubscribe_url ? $this->unsubscribe_url : '#',
+				'sent_to_admin'    => false,
+				'plain_text'       => $plain_text,
+				'email'            => $this,
 			),
 			'',
 			$this->template_base
@@ -205,7 +299,7 @@ class BackInStockEmail extends \WC_Email {
 				'placeholder' => $this->get_default_subject(),
 				'default'     => '',
 			),
-			'heading'    => array(
+			'heading'     => array(
 				'title'       => __( 'Email heading', 'beltoft-in-stock-notifier' ),
 				'type'        => 'text',
 				'desc_tip'    => true,
@@ -213,7 +307,41 @@ class BackInStockEmail extends \WC_Email {
 				'placeholder' => $this->get_default_heading(),
 				'default'     => '',
 			),
-			'email_type' => array(
+			'body_text'   => array(
+				'title'       => __( 'Body text', 'beltoft-in-stock-notifier' ),
+				'type'        => 'textarea',
+				'desc_tip'    => true,
+				'description' => $placeholder_text,
+				'placeholder' => $this->get_default_body_text(),
+				'default'     => '',
+				'css'         => 'width: 400px; height: 75px;',
+			),
+			'button_text' => array(
+				'title'       => __( 'Button text', 'beltoft-in-stock-notifier' ),
+				'type'        => 'text',
+				'desc_tip'    => true,
+				'description' => $placeholder_text,
+				'placeholder' => $this->get_default_button_text(),
+				'default'     => '',
+			),
+			'footer_text'      => array(
+				'title'       => __( 'Footer text', 'beltoft-in-stock-notifier' ),
+				'type'        => 'textarea',
+				'desc_tip'    => true,
+				'description' => $placeholder_text,
+				'placeholder' => $this->get_default_footer_text(),
+				'default'     => '',
+				'css'         => 'width: 400px; height: 75px;',
+			),
+			'unsubscribe_text' => array(
+				'title'       => __( 'Unsubscribe link text', 'beltoft-in-stock-notifier' ),
+				'type'        => 'text',
+				'desc_tip'    => true,
+				'description' => $placeholder_text,
+				'placeholder' => $this->get_default_unsubscribe_text(),
+				'default'     => '',
+			),
+			'email_type'       => array(
 				'title'       => __( 'Email type', 'beltoft-in-stock-notifier' ),
 				'type'        => 'select',
 				'description' => __( 'Choose which format of email to send.', 'beltoft-in-stock-notifier' ),

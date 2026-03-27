@@ -65,9 +65,10 @@ class Options {
 			'cleanup_days'          => '90',
 			'success_message'       => 'You will be notified when this product is back in stock.',
 			'already_subscribed_msg' => 'You are already subscribed for this product.',
-			'button_text'           => 'Notify Me',
+			'heading_text'          => 'Want to know when it\'s back? Leave your email below.',
+		'button_text'           => 'Notify Me',
 			'rate_limit_per_ip'     => '10',
-			'disable_logging'       => '0',
+			'enable_logging'        => '0',
 			'cleanup_on_uninstall'  => '0',
 		);
 	}
@@ -120,7 +121,7 @@ class Options {
 			'form_position_enabled',
 			'quantity_field_enabled',
 			'gdpr_enabled',
-			'disable_logging',
+			'enable_logging',
 			'cleanup_on_uninstall',
 		);
 
@@ -132,6 +133,7 @@ class Options {
 			'gdpr_text',
 			'success_message',
 			'already_subscribed_msg',
+			'heading_text',
 			'button_text',
 		);
 

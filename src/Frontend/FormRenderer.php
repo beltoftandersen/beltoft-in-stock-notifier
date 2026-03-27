@@ -194,6 +194,8 @@ class FormRenderer {
 	public static function get_form_html( $product_id, $variation_id, $hidden = false ) {
 		$opts = Options::get_all();
 
+		$heading_default = $opts['heading_text'];
+
 		/**
 		 * Filter the heading text.
 		 *
@@ -202,7 +204,7 @@ class FormRenderer {
 		 */
 		$heading = apply_filters(
 			'bisn_form_heading_text',
-			__( 'Want to know when it\'s back? Leave your email below.', 'beltoft-in-stock-notifier' ),
+			$heading_default,
 			$product_id
 		);
 
