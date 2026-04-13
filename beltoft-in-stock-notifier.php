@@ -3,7 +3,7 @@
  * Plugin Name:       Beltoft In-Stock Notifier for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/beltoft-in-stock-notifier/
  * Description:       Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            beltoft.net
@@ -40,11 +40,11 @@ spl_autoload_register(
 );
 
 /* ── Constants ─────────────────────────────────────────────────── */
-define( 'BISN_VERSION', '1.2.0' );
+define( 'BISN_VERSION', '1.2.1' );
 define( 'BISN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BISN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BISN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'BISN_DB_VERSION', '1.1.3' );
+define( 'BISN_DB_VERSION', '1.1.4' );
 
 /* ── Activation / deactivation ─────────────────────────────────── */
 register_activation_hook(

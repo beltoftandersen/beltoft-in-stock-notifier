@@ -579,9 +579,10 @@ msgstr "Stock atual: %s"
 #~ msgid "Unsubscribe:"
 #~ msgstr "Cancelar subscrição:"
 
-#~ msgid "Want to know when it's back? Leave your email below."
-#~ msgstr ""
-#~ "Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
+#: src/Support/Options.php:78
+msgid "Want to know when it's back? Leave your email below."
+msgstr ""
+"Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
 
 #, php-format
 #~ msgid ""

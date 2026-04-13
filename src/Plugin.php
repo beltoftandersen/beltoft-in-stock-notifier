@@ -64,7 +64,50 @@ class Plugin {
 		if ( version_compare( $current, BISN_DB_VERSION, '>=' ) ) {
 			return;
 		}
+
+		/*
+		 * 1.1.4: Strip stale English text defaults from saved options so that
+		 * get_all() falls through to the __()-translated defaults. Only text
+		 * fields that still match the original English value are removed;
+		 * admin-customised values are preserved.
+		 */
+		if ( version_compare( $current, '1.1.4', '<' ) ) {
+			self::migrate_strip_text_defaults();
+		}
+
 		Installer::activate();
+	}
+
+	/**
+	 * Remove text fields from saved options when they match the English default.
+	 *
+	 * @return void
+	 */
+	private static function migrate_strip_text_defaults() {
+		$saved = get_option( Options::OPTION, array() );
+		if ( ! is_array( $saved ) ) {
+			return;
+		}
+
+		$english = array(
+			'gdpr_text'             => 'I agree to be notified when this product is back in stock.',
+			'success_message'       => 'You will be notified when this product is back in stock.',
+			'already_subscribed_msg' => 'You are already subscribed for this product.',
+			'heading_text'          => 'Want to know when it\'s back? Leave your email below.',
+			'button_text'           => 'Notify Me',
+		);
+
+		$changed = false;
+		foreach ( $english as $key => $en_value ) {
+			if ( isset( $saved[ $key ] ) && $saved[ $key ] === $en_value ) {
+				unset( $saved[ $key ] );
+				$changed = true;
+			}
+		}
+
+		if ( $changed ) {
+			update_option( Options::OPTION, $saved );
+		}
 	}
 
 	/**

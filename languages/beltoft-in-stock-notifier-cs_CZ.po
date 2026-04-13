@@ -604,5 +604,6 @@ msgstr "Momentálně skladem: %s"
 #~ "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání "
 #~ "dostupnosti produktu %s."
 
-#~ msgid "Want to know when it's back? Leave your email below."
-#~ msgstr "Chcete vědět kdy bude produkt zase skladem?"
+#: src/Support/Options.php:78
+msgid "Want to know when it's back? Leave your email below."
+msgstr "Chcete vědět kdy bude produkt zase skladem?"

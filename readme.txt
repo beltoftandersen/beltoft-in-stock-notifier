@@ -4,7 +4,7 @@ Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,9 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.2.1 =
+* Fixed form text (heading, button, messages) not translating via .po files.
 
 = 1.2.0 =
 * Added editable email body text, button text, footer text, and unsubscribe link text under WooCommerce > Settings > Emails > Back In Stock.

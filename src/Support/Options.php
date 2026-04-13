@@ -49,7 +49,27 @@ class Options {
 	}
 
 	/**
+	 * Keys that hold user-facing translatable text.
+	 *
+	 * These are never persisted to the database unless the admin has customised
+	 * them. When absent from the DB, get_all() falls through to defaults()
+	 * which returns the translated value for the current locale.
+	 *
+	 * @var string[]
+	 */
+	const TEXT_KEYS = array(
+		'gdpr_text',
+		'success_message',
+		'already_subscribed_msg',
+		'heading_text',
+		'button_text',
+	);
+
+	/**
 	 * Default option values.
+	 *
+	 * Text fields use literal __() calls so the i18n scanner can extract them
+	 * and .po files can provide localised defaults.
 	 *
 	 * @return array<string, mixed>
 	 */
@@ -59,14 +79,14 @@ class Options {
 			'form_position_enabled'  => '1',
 			'quantity_field_enabled' => '0',
 			'gdpr_enabled'          => '0',
-			'gdpr_text'             => 'I agree to be notified when this product is back in stock.',
+			'gdpr_text'             => __( 'I agree to be notified when this product is back in stock.', 'beltoft-in-stock-notifier' ),
 			'batch_size'            => '50',
 			'throttle_seconds'      => '0',
 			'cleanup_days'          => '90',
-			'success_message'       => 'You will be notified when this product is back in stock.',
-			'already_subscribed_msg' => 'You are already subscribed for this product.',
-			'heading_text'          => 'Want to know when it\'s back? Leave your email below.',
-		'button_text'           => 'Notify Me',
+			'success_message'       => __( 'You will be notified when this product is back in stock.', 'beltoft-in-stock-notifier' ),
+			'already_subscribed_msg' => __( 'You are already subscribed for this product.', 'beltoft-in-stock-notifier' ),
+			'heading_text'          => __( 'Want to know when it\'s back? Leave your email below.', 'beltoft-in-stock-notifier' ),
+			'button_text'           => __( 'Notify Me', 'beltoft-in-stock-notifier' ),
 			'rate_limit_per_ip'     => '10',
 			'enable_logging'        => '0',
 			'cleanup_on_uninstall'  => '0',
@@ -129,18 +149,20 @@ class Options {
 			$clean[ $key ] = ! empty( $input[ $key ] ) ? '1' : '0';
 		}
 
-		$text_fields = array(
-			'gdpr_text',
-			'success_message',
-			'already_subscribed_msg',
-			'heading_text',
-			'button_text',
-		);
+		foreach ( self::TEXT_KEYS as $key ) {
+			if ( ! isset( $input[ $key ] ) ) {
+				continue;
+			}
+			$value = sanitize_text_field( wp_unslash( $input[ $key ] ) );
 
-		foreach ( $text_fields as $key ) {
-			$clean[ $key ] = isset( $input[ $key ] )
-				? sanitize_text_field( wp_unslash( $input[ $key ] ) )
-				: $defaults[ $key ];
+			/*
+			 * Only persist text fields that differ from the translated default.
+			 * Omitting unchanged defaults lets get_all() fall through to __(),
+			 * so translations stay current without stale DB values.
+			 */
+			if ( $value !== $defaults[ $key ] ) {
+				$clean[ $key ] = $value;
+			}
 		}
 
 		$int_fields = array(

@@ -71,11 +71,19 @@ class Installer {
 	/**
 	 * Seed default options if not already set.
 	 *
+	 * Text fields (TEXT_KEYS) are intentionally omitted so that get_all()
+	 * falls through to defaults(), which returns the __()-translated value
+	 * for the current locale. Only non-text settings are persisted.
+	 *
 	 * @return void
 	 */
 	private static function seed_options() {
 		if ( false === get_option( Options::OPTION ) ) {
-			add_option( Options::OPTION, Options::defaults() );
+			$defaults = Options::defaults();
+			foreach ( Options::TEXT_KEYS as $key ) {
+				unset( $defaults[ $key ] );
+			}
+			add_option( Options::OPTION, $defaults );
 		}
 	}
 
