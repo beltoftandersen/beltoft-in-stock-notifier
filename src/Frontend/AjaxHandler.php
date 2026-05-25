@@ -30,6 +30,18 @@ class AjaxHandler {
 	public static function init() {
 		add_action( 'wp_ajax_bisn_subscribe', array( __CLASS__, 'handle' ) );
 		add_action( 'wp_ajax_nopriv_bisn_subscribe', array( __CLASS__, 'handle' ) );
+		add_action( 'wp_ajax_bisn_get_nonce', array( __CLASS__, 'get_nonce' ) );
+		add_action( 'wp_ajax_nopriv_bisn_get_nonce', array( __CLASS__, 'get_nonce' ) );
+	}
+
+	/**
+	 * Mint a fresh subscribe nonce. Keeps cached product pages free of identity-bound data:
+	 * the nonce is generated under the visitor's actual session at submit time.
+	 *
+	 * @return void
+	 */
+	public static function get_nonce() {
+		wp_send_json_success( array( 'nonce' => wp_create_nonce( 'bisn_subscribe_nonce' ) ) );
 	}
 
 	/**

@@ -12,6 +12,11 @@
 
 	/**
 	 * Handle form submission via AJAX.
+	 *
+	 * Two-step flow: fetch a freshly-minted nonce from admin-ajax (never cached),
+	 * then POST the subscription with it. The nonce is never embedded in cached HTML,
+	 * so page caches at any TTL — and serving the same cached page to logged-in and
+	 * logged-out visitors — cannot cause "Security check failed".
 	 */
 	function handleFormSubmit(e) {
 		e.preventDefault();
@@ -27,32 +32,47 @@
 		$btn.prop('disabled', true);
 		$msg.text('').removeClass('bisn-success bisn-error');
 
-		var data = {
-			action: 'bisn_subscribe',
-			bisn_nonce: bisn_vars.nonce,
-			bisn_email: $form.find('[name="bisn_email"]').val(),
-			bisn_product_id: $form.find('[name="bisn_product_id"]').val(),
-			bisn_variation_id: $form.find('[name="bisn_variation_id"]').val() || '0',
-			bisn_quantity: $form.find('[name="bisn_quantity"]').val() || '1',
-			bisn_gdpr: $form.find('[name="bisn_gdpr"]').is(':checked') ? '1' : '',
-			bisn_website: $form.find('[name="bisn_website"]').val() || ''
-		};
+		function showError(message) {
+			$btn.prop('disabled', false);
+			$msg.text(message).addClass('bisn-error');
+		}
 
-		$.post(bisn_vars.ajax_url, data, function (response) {
-			$btn.prop('disabled', false);
-			if (response.success) {
-				$msg.text(response.data.message).addClass('bisn-success');
-				$form.find('[name="bisn_email"]').val('');
-			} else {
-				var message = response.data && response.data.message
-					? response.data.message
-					: bisn_vars.error_generic;
-				$msg.text(message).addClass('bisn-error');
-			}
-		}).fail(function () {
-			$btn.prop('disabled', false);
-			$msg.text(bisn_vars.error_network).addClass('bisn-error');
-		});
+		$.post(bisn_vars.ajax_url, { action: 'bisn_get_nonce' })
+			.done(function (nonceResp) {
+				if (!nonceResp || !nonceResp.success || !nonceResp.data || !nonceResp.data.nonce) {
+					showError(bisn_vars.error_generic);
+					return;
+				}
+
+				var data = {
+					action: 'bisn_subscribe',
+					bisn_nonce: nonceResp.data.nonce,
+					bisn_email: $form.find('[name="bisn_email"]').val(),
+					bisn_product_id: $form.find('[name="bisn_product_id"]').val(),
+					bisn_variation_id: $form.find('[name="bisn_variation_id"]').val() || '0',
+					bisn_quantity: $form.find('[name="bisn_quantity"]').val() || '1',
+					bisn_gdpr: $form.find('[name="bisn_gdpr"]').is(':checked') ? '1' : '',
+					bisn_website: $form.find('[name="bisn_website"]').val() || ''
+				};
+
+				$.post(bisn_vars.ajax_url, data, function (response) {
+					$btn.prop('disabled', false);
+					if (response.success) {
+						$msg.text(response.data.message).addClass('bisn-success');
+						$form.find('[name="bisn_email"]').val('');
+					} else {
+						var message = response.data && response.data.message
+							? response.data.message
+							: bisn_vars.error_generic;
+						$msg.text(message).addClass('bisn-error');
+					}
+				}).fail(function () {
+					showError(bisn_vars.error_network);
+				});
+			})
+			.fail(function () {
+				showError(bisn_vars.error_network);
+			});
 	}
 
 	$(function () {

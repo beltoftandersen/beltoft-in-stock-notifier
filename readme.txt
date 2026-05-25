@@ -4,7 +4,7 @@ Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,10 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.2.3 =
+- Fix "Security check failed. Please refresh the page." on sites with full-page caching. The subscribe nonce is now minted on demand via a small AJAX endpoint (`bisn_get_nonce`) instead of being embedded in the cached product page HTML, so cached pages stay valid regardless of cache TTL or whether the visitor is logged in.
+- Remove unused empty hidden `bisn_nonce` input from the form (the nonce is now supplied entirely by the JavaScript flow).
 
 = 1.2.2 =
 - Tested with WordPress 7.0.

@@ -102,12 +102,12 @@ class FormRenderer {
 			true
 		);
 
+		// Nonce is fetched lazily via bisn_get_nonce so this localized payload stays cache-safe.
 		wp_localize_script(
 			'bisn-frontend',
 			'bisn_vars',
 			array(
 				'ajax_url'      => admin_url( 'admin-ajax.php' ),
-				'nonce'         => wp_create_nonce( 'bisn_subscribe_nonce' ),
 				'error_generic' => esc_html__( 'An error occurred.', 'beltoft-in-stock-notifier' ),
 				'error_network' => esc_html__( 'An error occurred. Please try again.', 'beltoft-in-stock-notifier' ),
 			)
@@ -251,7 +251,6 @@ class FormRenderer {
 		$html .= '</div>';
 
 		/* Hidden fields. */
-		$html .= '<input type="hidden" name="bisn_nonce" value="" />';
 		$html .= '<input type="hidden" name="bisn_product_id" value="' . absint( $product_id ) . '" />';
 		$html .= '<input type="hidden" name="bisn_variation_id" value="' . absint( $variation_id ) . '" />';
 
