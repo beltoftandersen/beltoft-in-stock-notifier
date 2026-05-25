@@ -2,8 +2,8 @@
 
 Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
 
-- Stable version: 1.2.1
-- Requires: WordPress 5.8+, PHP 7.4+, WooCommerce 6.0+
+- Stable version: 1.2.2
+- Requires: WordPress 5.8+, PHP 7.4+, WooCommerce 6.0+ (tested up to WordPress 7.0)
 - Author: beltoft.net
 - Text domain: beltoft-in-stock-notifier
 
@@ -91,6 +91,10 @@ Developers can extend the plugin:
 - Translation template: `languages/beltoft-in-stock-notifier.pot`
 
 ## Changelog
+
+### 1.2.2
+
+- Tested with WordPress 7.0.
 
 ### 1.2.1
 
