@@ -92,6 +92,10 @@ Developers can extend the plugin:
 
 ## Changelog
 
+### 1.2.4
+
+- Complete the Portuguese and Czech translations, including the back-in-stock email body and footer that were previously sent in English.
+
 ### 1.2.3
 
 - Fix "Security check failed. Please refresh the page." on sites with full-page caching. The subscribe nonce is now minted on demand via a small AJAX endpoint (`bisn_get_nonce`) instead of being embedded in the cached product page HTML, so cached pages stay valid regardless of cache TTL or whether the visitor is logged in.

@@ -1,13 +1,10 @@
-# Portuguese (Portugal) translation for Beltoft In-Stock Notifier for WooCommerce.
-# Copyright (C) 2026 beltoftnet
-# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.0.29\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/beltoft-in-stock-"
 "notifier\n"
 "POT-Creation-Date: 2026-03-27T18:00:29+00:00\n"
-"PO-Revision-Date: 2026-02-18T13:30:00+00:00\n"
+"PO-Revision-Date: 2026-06-02T00:00:00+00:00\n"
 "Last-Translator: beltoftnet <info@beltoft.net>\n"
 "Language-Team: Portuguese (Portugal)\n"
 "Language: pt_PT\n"
@@ -17,6 +14,40 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: beltoft-in-stock-notifier\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Brand"
+msgstr "Marca"
+
+msgid ""
+"Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full "
+"results."
+msgstr ""
+"A mostrar os primeiros %1$d de %2$d subscritores. Utilize o separador "
+"Subscrições para ver todos os resultados."
+
+msgid "Form Heading"
+msgstr "Cabeçalho do formulário"
+
+msgid "Text shown above the subscription form."
+msgstr "Texto apresentado acima do formulário de subscrição."
+
+msgid "Body text"
+msgstr "Texto do corpo"
+
+msgid "Button text"
+msgstr "Texto do botão"
+
+msgid "Footer text"
+msgstr "Texto do rodapé"
+
+msgid "Enable Logging"
+msgstr "Ativar registo"
+
+msgid "Unsubscribe link text"
+msgstr "Texto da ligação de cancelamento de subscrição"
 
 #. Plugin Name of the plugin
 #: beltoft-in-stock-notifier.php
@@ -102,14 +133,6 @@ msgstr "Ainda não existem subscrições ativas."
 msgid "Product"
 msgstr "Produto"
 
-#: src/Admin/DashboardTab.php:137
-msgid "SKU"
-msgstr ""
-
-#: src/Admin/DashboardTab.php:139
-msgid "Brand"
-msgstr ""
-
 #: src/Admin/DashboardTab.php:141
 msgid "Variation"
 msgstr "Variação"
@@ -156,14 +179,6 @@ msgstr "Não tem permissão para fazer isto."
 #: src/Admin/DashboardTab.php:304
 msgid "Product not found."
 msgstr "Produto não encontrado."
-
-#. translators: 1: displayed count, 2: total count
-#: src/Admin/DashboardTab.php:347
-#, php-format
-msgid ""
-"Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full "
-"results."
-msgstr ""
 
 #: src/Admin/DashboardTab.php:352
 msgid "No subscribers for this product."
@@ -220,14 +235,6 @@ msgstr "Desmarque para usar apenas o shortcode [bisn_form]."
 #: src/Admin/SettingsTab.php:42
 msgid "Show Quantity Field"
 msgstr "Mostrar Campo de Quantidade"
-
-#: src/Admin/SettingsTab.php:43
-msgid "Form Heading"
-msgstr ""
-
-#: src/Admin/SettingsTab.php:43
-msgid "Text shown above the subscription form."
-msgstr ""
 
 #: src/Admin/SettingsTab.php:44
 msgid "Button Text"
@@ -298,11 +305,6 @@ msgid "Delete notified subscriptions older than this. 0 = never delete."
 msgstr ""
 "Eliminar subscrições notificadas mais antigas que este valor. 0 = nunca "
 "eliminar."
-
-#: src/Admin/SettingsTab.php:81
-#, fuzzy
-msgid "Enable Logging"
-msgstr "Desativar Registo"
 
 #: src/Admin/SettingsTab.php:82
 msgid "Remove Data on Uninstall"
@@ -403,7 +405,7 @@ msgstr "Está de volta ao stock!"
 #. translators: 1: product name, 2: site name
 #: src/Email/BackInStockEmail.php:83
 msgid "Good news! {product_name} is back in stock at {site_title}."
-msgstr ""
+msgstr "Boas notícias! {product_name} está de volta ao stock em {site_title}."
 
 #: src/Email/BackInStockEmail.php:92
 msgid "Shop Now"
@@ -415,6 +417,8 @@ msgid ""
 "You received this email because you subscribed to a back-in-stock "
 "notification on {site_title}."
 msgstr ""
+"Recebeu este email porque subscreveu uma notificação de disponibilidade em "
+"{site_title}."
 
 #: src/Email/BackInStockEmail.php:111 src/Unsubscribe/Handler.php:49
 #: src/Unsubscribe/Handler.php:58 src/Unsubscribe/Handler.php:66
@@ -447,23 +451,6 @@ msgstr "Assunto"
 #: src/Email/BackInStockEmail.php:303
 msgid "Email heading"
 msgstr "Cabeçalho do email"
-
-#: src/Email/BackInStockEmail.php:311
-msgid "Body text"
-msgstr ""
-
-#: src/Email/BackInStockEmail.php:320
-msgid "Button text"
-msgstr ""
-
-#: src/Email/BackInStockEmail.php:328
-msgid "Footer text"
-msgstr ""
-
-#: src/Email/BackInStockEmail.php:337
-#, fuzzy
-msgid "Unsubscribe link text"
-msgstr "Cancelar subscrição"
 
 #: src/Email/BackInStockEmail.php:345
 msgid "Email type"
@@ -576,13 +563,12 @@ msgstr "Disponível"
 msgid "Current stock: %s"
 msgstr "Stock atual: %s"
 
-#~ msgid "Unsubscribe:"
-#~ msgstr "Cancelar subscrição:"
-
 #: src/Support/Options.php:78
 msgid "Want to know when it's back? Leave your email below."
-msgstr ""
-"Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
+msgstr "Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
+
+#~ msgid "Unsubscribe:"
+#~ msgstr "Cancelar subscrição:"
 
 #, php-format
 #~ msgid ""
