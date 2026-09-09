@@ -2,9 +2,9 @@
 Contributors: beltoftnet
 Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,15 @@ Developers can extend the plugin:
 * `bisn_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
 * `bisn_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
 
+=== REST API (read-only) ===
+For purchasing and demand-planning integrations, the plugin exposes one read-only endpoint that returns aggregate counts per product — never e-mail addresses or other personal data:
+
+`GET /wp-json/beltoft-in-stock-notifier/v1/subscribers?page=1&per_page=200`
+
+* Authentication: WooCommerce REST API consumer key/secret (the same scheme as `wc/v3`, key needs Read permission) or any logged-in WordPress user. The user must have the `manage_woocommerce` capability. Unauthenticated requests receive HTTP 401.
+* `per_page` defaults to 200, maximum 500. Products with no waiting subscribers, no notifications in the last 30 days and no signups in the last 365 days are omitted.
+* Each item contains `sku`, `product_id`, `variation_id` (0 for simple products; for variations `sku` is the variation's own SKU), `waiting` (subscribers not yet notified — identical to the "Active Subscribers" count in the admin dashboard), `notified_30d` (subscribers notified in the last 30 days) and `signups` (signup counts per UTC calendar day for the last 365 days, days with zero signups omitted).
+
 == Frequently Asked Questions ==
 
 = Does it work with variable products? =
@@ -101,6 +110,10 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.3.0 =
+- Add read-only REST endpoint `GET /wp-json/beltoft-in-stock-notifier/v1/subscribers` returning aggregate waiting / notified / signups-per-day counts per product for purchasing integrations. Authenticated via WooCommerce API keys or WordPress login; requires `manage_woocommerce`. Counts only — no personal data.
+- Tested with WordPress 7.1 and WooCommerce 10.7.
 
 = 1.2.4 =
 - Complete the Portuguese and Czech translations, including the back-in-stock email body and footer that were previously sent in English.

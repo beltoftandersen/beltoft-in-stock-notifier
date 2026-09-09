@@ -423,4 +423,92 @@ class Repository {
 			)
 		);
 	}
+
+	/**
+	 * Aggregate subscription counts per product/variation for reporting.
+	 *
+	 * Returns only counts — never e-mail addresses or other personal data.
+	 * "waiting" uses the same definition as the admin dashboard: rows with
+	 * status = 'active'. Groups with no waiting subscribers, no recent
+	 * notifications and no recent signups are omitted.
+	 *
+	 * @param int    $limit           Groups per page.
+	 * @param int    $offset          Offset for pagination.
+	 * @param string $notified_since  UTC MySQL datetime; count notifications at or after this time.
+	 * @param string $signups_since   UTC MySQL datetime; count signups at or after this time.
+	 * @return array{items: array<int, object>, total: int}
+	 */
+	public static function aggregate_by_product( $limit, $offset, $notified_since, $signups_since ) {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$total = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM (
+					SELECT product_id, variation_id,
+						SUM( CASE WHEN status = %s THEN 1 ELSE 0 END ) AS waiting,
+						SUM( CASE WHEN notified_at IS NOT NULL AND notified_at >= %s THEN 1 ELSE 0 END ) AS notified_recent,
+						SUM( CASE WHEN created_at >= %s THEN 1 ELSE 0 END ) AS signups_recent
+					FROM {$wpdb->prefix}bisn_subscriptions
+					GROUP BY product_id, variation_id
+					HAVING waiting > 0 OR notified_recent > 0 OR signups_recent > 0
+				) AS t",
+				'active',
+				$notified_since,
+				$signups_since
+			)
+		);
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$items = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT product_id, variation_id,
+					SUM( CASE WHEN status = %s THEN 1 ELSE 0 END ) AS waiting,
+					SUM( CASE WHEN notified_at IS NOT NULL AND notified_at >= %s THEN 1 ELSE 0 END ) AS notified_recent,
+					SUM( CASE WHEN created_at >= %s THEN 1 ELSE 0 END ) AS signups_recent
+				FROM {$wpdb->prefix}bisn_subscriptions
+				GROUP BY product_id, variation_id
+				HAVING waiting > 0 OR notified_recent > 0 OR signups_recent > 0
+				ORDER BY product_id ASC, variation_id ASC
+				LIMIT %d OFFSET %d",
+				'active',
+				$notified_since,
+				$signups_since,
+				absint( $limit ),
+				absint( $offset )
+			)
+		);
+
+		return array(
+			'items' => is_array( $items ) ? $items : array(),
+			'total' => $total,
+		);
+	}
+
+	/**
+	 * Count signups per UTC calendar day for a set of product/variation pairs.
+	 *
+	 * @param array<int, array{0: int, 1: int}> $pairs  List of [product_id, variation_id] pairs.
+	 * @param string                            $since  UTC MySQL datetime lower bound (inclusive).
+	 * @return array<int, object> Rows with product_id, variation_id, day (Y-m-d), cnt.
+	 */
+	public static function signups_per_day( array $pairs, $since ) {
+		global $wpdb;
+
+		if ( empty( $pairs ) ) {
+			return array();
+		}
+
+		$values = array( $since );
+		foreach ( $pairs as $pair ) {
+			$values[] = absint( $pair[0] );
+			$values[] = absint( $pair[1] );
+		}
+		$in_sql = implode( ', ', array_fill( 0, count( $pairs ), '(%d, %d)' ) );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT product_id, variation_id, DATE( created_at ) AS day, COUNT(*) AS cnt FROM {$wpdb->prefix}bisn_subscriptions WHERE created_at >= %s AND ( product_id, variation_id ) IN ( $in_sql ) GROUP BY product_id, variation_id, day ORDER BY day ASC", ...$values ) );
+
+		return is_array( $rows ) ? $rows : array();
+	}
 }

@@ -19,6 +19,7 @@ use BeltoftInStockNotifier\Stock\StockListener;
 use BeltoftInStockNotifier\Stock\NotificationSender;
 use BeltoftInStockNotifier\Unsubscribe\Handler as UnsubscribeHandler;
 use BeltoftInStockNotifier\Email\BackInStockEmail;
+use BeltoftInStockNotifier\Rest\SubscribersController;
 use BeltoftInStockNotifier\Support\Installer;
 use BeltoftInStockNotifier\Support\Options;
 
@@ -46,6 +47,7 @@ class Plugin {
 		StockListener::init();
 		NotificationSender::init();
 		UnsubscribeHandler::init();
+		SubscribersController::init();
 
 		/* Register back-in-stock email with WooCommerce. */
 		add_filter( 'woocommerce_email_classes', array( __CLASS__, 'register_email_class' ) );

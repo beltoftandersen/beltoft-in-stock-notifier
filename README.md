@@ -85,12 +85,49 @@ Developers can extend the plugin:
 - `bisn_stock_status_triggers` — customise which statuses trigger notifications (default: instock, onbackorder)
 - `bisn_cache_purge_product` — fire custom cache purge logic (e.g. Varnish, CDN)
 
+## REST API (read-only)
+
+For purchasing and demand-planning integrations, the plugin exposes one read-only endpoint that returns aggregate counts per product — never e-mail addresses or other personal data:
+
+```
+GET /wp-json/beltoft-in-stock-notifier/v1/subscribers?page=1&per_page=200
+```
+
+- **Authentication**: WooCommerce REST API consumer key/secret (the same scheme as `wc/v3`; the key needs Read permission) or any logged-in WordPress user. The user must have the `manage_woocommerce` capability. Unauthenticated requests receive HTTP 401.
+- **Pagination**: `page` (default 1), `per_page` (default 200, max 500). Results are ordered by `product_id`, `variation_id`.
+- **Filtering**: products with no waiting subscribers, no notifications in the last 30 days and no signups in the last 365 days are omitted.
+
+```json
+{
+  "generated_at": "2026-09-09T12:00:00+00:00",
+  "page": 1, "per_page": 200, "total_pages": 2, "total_items": 254,
+  "items": [
+    { "sku": "MTT_MP_MS", "product_id": 114425, "variation_id": 0,
+      "waiting": 12, "notified_30d": 4,
+      "signups": { "2026-08-01": 2, "2026-08-14": 1 } }
+  ]
+}
+```
+
+| Field | Meaning |
+|-------|---------|
+| `sku` | The variation's own SKU for variations (falls back to the parent SKU when the variation has none), the product SKU otherwise. Empty string if the product no longer exists. |
+| `product_id` / `variation_id` | Parent product ID and variation ID. `variation_id` is `0` for simple products. |
+| `waiting` | Subscribers signed up and not yet notified (`status = active`). Identical to the "Active Subscribers" count shown in the admin dashboard. |
+| `notified_30d` | Subscribers whose back-in-stock e-mail was sent in the last 30 days (including anyone who unsubscribed afterwards). |
+| `signups` | Signup counts per UTC calendar day over the last 365 days, all statuses included; days with zero signups are omitted. |
+
 ## Translations
 
 - Text domain: `beltoft-in-stock-notifier`
 - Translation template: `languages/beltoft-in-stock-notifier.pot`
 
 ## Changelog
+
+### 1.3.0
+
+- Add read-only REST endpoint `GET /wp-json/beltoft-in-stock-notifier/v1/subscribers` returning aggregate waiting / notified / signups-per-day counts per product for purchasing integrations. Authenticated via WooCommerce API keys or WordPress login; requires `manage_woocommerce`. Counts only — no personal data.
+- Tested with WordPress 7.1 and WooCommerce 10.7.
 
 ### 1.2.4
 
