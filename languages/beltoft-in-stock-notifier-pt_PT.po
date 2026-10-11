@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.0.29\n"
+"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/beltoft-in-stock-"
 "notifier\n"
-"POT-Creation-Date: 2026-03-27T18:00:29+00:00\n"
-"PO-Revision-Date: 2026-06-02T00:00:00+00:00\n"
+"POT-Creation-Date: 2026-09-09T06:18:48+00:00\n"
+"PO-Revision-Date: 2026-10-11T00:00:00+00:00\n"
 "Last-Translator: beltoftnet <info@beltoft.net>\n"
 "Language-Team: Portuguese (Portugal)\n"
 "Language: pt_PT\n"
@@ -15,49 +15,15 @@ msgstr ""
 "X-Domain: beltoft-in-stock-notifier\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "SKU"
-msgstr "SKU"
-
-msgid "Brand"
-msgstr "Marca"
-
-msgid ""
-"Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full "
-"results."
-msgstr ""
-"A mostrar os primeiros %1$d de %2$d subscritores. Utilize o separador "
-"Subscrições para ver todos os resultados."
-
-msgid "Form Heading"
-msgstr "Cabeçalho do formulário"
-
-msgid "Text shown above the subscription form."
-msgstr "Texto apresentado acima do formulário de subscrição."
-
-msgid "Body text"
-msgstr "Texto do corpo"
-
-msgid "Button text"
-msgstr "Texto do botão"
-
-msgid "Footer text"
-msgstr "Texto do rodapé"
-
-msgid "Enable Logging"
-msgstr "Ativar registo"
-
-msgid "Unsubscribe link text"
-msgstr "Texto da ligação de cancelamento de subscrição"
-
 #. Plugin Name of the plugin
 #: beltoft-in-stock-notifier.php
 msgid "Beltoft In-Stock Notifier for WooCommerce"
-msgstr ""
+msgstr "Beltoft In-Stock Notifier for WooCommerce"
 
 #. Plugin URI of the plugin
 #: beltoft-in-stock-notifier.php
 msgid "https://wordpress.org/plugins/beltoft-in-stock-notifier/"
-msgstr ""
+msgstr "https://wordpress.org/plugins/beltoft-in-stock-notifier/"
 
 #. Description of the plugin
 #: beltoft-in-stock-notifier.php
@@ -71,12 +37,12 @@ msgstr ""
 #. Author of the plugin
 #: beltoft-in-stock-notifier.php
 msgid "beltoft.net"
-msgstr ""
+msgstr "beltoft.net"
 
 #. Author URI of the plugin
 #: beltoft-in-stock-notifier.php
 msgid "https://beltoft.net"
-msgstr ""
+msgstr "https://beltoft.net"
 
 #. translators: %s: WooCommerce plugin name
 #: beltoft-in-stock-notifier.php:55
@@ -133,6 +99,14 @@ msgstr "Ainda não existem subscrições ativas."
 msgid "Product"
 msgstr "Produto"
 
+#: src/Admin/DashboardTab.php:137
+msgid "SKU"
+msgstr "SKU"
+
+#: src/Admin/DashboardTab.php:139
+msgid "Brand"
+msgstr "Marca"
+
 #: src/Admin/DashboardTab.php:141
 msgid "Variation"
 msgstr "Variação"
@@ -179,6 +153,16 @@ msgstr "Não tem permissão para fazer isto."
 #: src/Admin/DashboardTab.php:304
 msgid "Product not found."
 msgstr "Produto não encontrado."
+
+#. translators: 1: displayed count, 2: total count
+#: src/Admin/DashboardTab.php:347
+#, php-format
+msgid ""
+"Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full "
+"results."
+msgstr ""
+"A mostrar os primeiros %1$d de %2$d subscritores. Utilize o separador "
+"Subscrições para ver todos os resultados."
 
 #: src/Admin/DashboardTab.php:352
 msgid "No subscribers for this product."
@@ -235,6 +219,14 @@ msgstr "Desmarque para usar apenas o shortcode [bisn_form]."
 #: src/Admin/SettingsTab.php:42
 msgid "Show Quantity Field"
 msgstr "Mostrar Campo de Quantidade"
+
+#: src/Admin/SettingsTab.php:43
+msgid "Form Heading"
+msgstr "Cabeçalho do formulário"
+
+#: src/Admin/SettingsTab.php:43
+msgid "Text shown above the subscription form."
+msgstr "Texto apresentado acima do formulário de subscrição."
 
 #: src/Admin/SettingsTab.php:44
 msgid "Button Text"
@@ -305,6 +297,10 @@ msgid "Delete notified subscriptions older than this. 0 = never delete."
 msgstr ""
 "Eliminar subscrições notificadas mais antigas que este valor. 0 = nunca "
 "eliminar."
+
+#: src/Admin/SettingsTab.php:81
+msgid "Enable Logging"
+msgstr "Ativar registo"
 
 #: src/Admin/SettingsTab.php:82
 msgid "Remove Data on Uninstall"
@@ -452,6 +448,22 @@ msgstr "Assunto"
 msgid "Email heading"
 msgstr "Cabeçalho do email"
 
+#: src/Email/BackInStockEmail.php:311
+msgid "Body text"
+msgstr "Texto do corpo"
+
+#: src/Email/BackInStockEmail.php:320
+msgid "Button text"
+msgstr "Texto do botão"
+
+#: src/Email/BackInStockEmail.php:328
+msgid "Footer text"
+msgstr "Texto do rodapé"
+
+#: src/Email/BackInStockEmail.php:337
+msgid "Unsubscribe link text"
+msgstr "Texto da ligação de cancelamento de subscrição"
+
 #: src/Email/BackInStockEmail.php:345
 msgid "Email type"
 msgstr "Tipo de email"
@@ -460,11 +472,11 @@ msgstr "Tipo de email"
 msgid "Choose which format of email to send."
 msgstr "Escolha o formato de email a enviar."
 
-#: src/Frontend/AjaxHandler.php:43
+#: src/Frontend/AjaxHandler.php:55
 msgid "Security check failed. Please refresh the page."
 msgstr "Verificação de segurança falhou. Por favor, atualize a página."
 
-#: src/Frontend/AjaxHandler.php:90
+#: src/Frontend/AjaxHandler.php:102
 msgid "Something went wrong. Please try again."
 msgstr "Algo correu mal. Por favor, tente novamente."
 
@@ -488,12 +500,28 @@ msgstr "Endereço de email"
 msgid "Your email address"
 msgstr "O seu endereço de email"
 
-#: src/Plugin.php:107
+#: src/Plugin.php:152
 msgid ""
 "Are you sure you want to delete ALL subscriptions? This cannot be undone."
 msgstr ""
 "Tem a certeza de que deseja eliminar TODAS as subscrições? Esta ação não "
 "pode ser revertida."
+
+#: src/Rest/SubscribersController.php:65
+msgid "Page of results (1-based)."
+msgstr "Página de resultados (a começar em 1)."
+
+#: src/Rest/SubscribersController.php:73
+msgid "Number of products per page."
+msgstr "Número de produtos por página."
+
+#: src/Rest/SubscribersController.php:132
+msgid "Authentication required."
+msgstr "É necessária autenticação."
+
+#: src/Rest/SubscribersController.php:140
+msgid "You are not allowed to view subscriber statistics."
+msgstr "Não tem permissão para ver as estatísticas de subscritores."
 
 #: src/Subscription/Validator.php:33
 msgid "Spam detected."
@@ -514,6 +542,28 @@ msgstr "Por favor, aceite a caixa de consentimento."
 #: src/Subscription/Validator.php:58
 msgid "Too many requests. Please try again later."
 msgstr "Demasiados pedidos. Por favor, tente mais tarde."
+
+#: src/Support/Options.php:82
+msgid "I agree to be notified when this product is back in stock."
+msgstr ""
+"Aceito ser notificado quando este produto voltar a estar disponível em stock."
+
+#: src/Support/Options.php:86
+msgid "You will be notified when this product is back in stock."
+msgstr ""
+"Será notificado quando este produto voltar a estar disponível em stock."
+
+#: src/Support/Options.php:87
+msgid "You are already subscribed for this product."
+msgstr "Já está subscrito para este produto."
+
+#: src/Support/Options.php:88
+msgid "Want to know when it's back? Leave your email below."
+msgstr "Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
+
+#: src/Support/Options.php:89
+msgid "Notify Me"
+msgstr "Notifique-me"
 
 #: src/Unsubscribe/Handler.php:48 src/Unsubscribe/Handler.php:57
 msgid "Invalid unsubscribe link."
@@ -562,41 +612,3 @@ msgstr "Disponível"
 #, php-format
 msgid "Current stock: %s"
 msgstr "Stock atual: %s"
-
-#: src/Support/Options.php:78
-msgid "Want to know when it's back? Leave your email below."
-msgstr "Quer saber quando voltar a estar disponível? Deixe o seu email abaixo."
-
-#~ msgid "Unsubscribe:"
-#~ msgstr "Cancelar subscrição:"
-
-#, php-format
-#~ msgid ""
-#~ "Good news! <strong>%1$s</strong> is back in stock at <a "
-#~ "href=\"%2$s\">%3$s</a>."
-#~ msgstr ""
-#~ "Boas notícias! <strong>%1$s</strong> está de volta ao stock em <a "
-#~ "href=\"%2$s\">%3$s</a>."
-
-#, php-format
-#~ msgid ""
-#~ "You received this email because you subscribed to a back-in-stock "
-#~ "notification on %1$s. <a href=\"%2$s\">Unsubscribe</a>"
-#~ msgstr ""
-#~ "Recebeu este email porque subscreveu uma notificação de disponibilidade "
-#~ "em %1$s. <a href=\"%2$s\">Cancelar subscrição</a>"
-
-#, php-format
-#~ msgid "Good news! %1$s is back in stock at %2$s."
-#~ msgstr "Boas notícias! %1$s está de volta ao stock em %2$s."
-
-#~ msgid "Shop Now:"
-#~ msgstr "Comprar Agora:"
-
-#, php-format
-#~ msgid ""
-#~ "You received this email because you subscribed to a back-in-stock "
-#~ "notification on %s."
-#~ msgstr ""
-#~ "Recebeu este email porque subscreveu uma notificação de disponibilidade "
-#~ "em %s."

@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.1.0\n"
+"Project-Id-Version: Beltoft In-Stock Notifier for WooCommerce 1.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/beltoft-in-stock-"
 "notifier\n"
-"POT-Creation-Date: 2026-03-27T18:00:29+00:00\n"
-"PO-Revision-Date: 2026-06-02 00:00+0000\n"
+"POT-Creation-Date: 2026-09-09T06:18:48+00:00\n"
+"PO-Revision-Date: 2026-10-11T00:00:00+00:00\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -14,9 +14,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Domain: beltoft-in-stock-notifier\n"
 
-msgid "In-Stock Notifier"
-msgstr "Hlídání dostupnosti"
+#. Plugin Name of the plugin
+#: beltoft-in-stock-notifier.php
+msgid "Beltoft In-Stock Notifier for WooCommerce"
+msgstr "Beltoft In-Stock Notifier for WooCommerce"
 
+#. Plugin URI of the plugin
+#: beltoft-in-stock-notifier.php
+msgid "https://wordpress.org/plugins/beltoft-in-stock-notifier/"
+msgstr "https://wordpress.org/plugins/beltoft-in-stock-notifier/"
+
+#. Description of the plugin
+#: beltoft-in-stock-notifier.php
 msgid ""
 "Let customers subscribe to out-of-stock product notifications and "
 "automatically email them when items are back in stock."
@@ -24,6 +33,131 @@ msgstr ""
 "Umožněte zákazníkům přihlásit se k odběru oznámení o nedostupných produktech "
 "a automaticky jim zašlete e-mail, jakmile budou položky opět skladem."
 
+#. Author of the plugin
+#: beltoft-in-stock-notifier.php
+msgid "beltoft.net"
+msgstr "beltoft.net"
+
+#. Author URI of the plugin
+#: beltoft-in-stock-notifier.php
+msgid "https://beltoft.net"
+msgstr "https://beltoft.net"
+
+#. translators: %s: WooCommerce plugin name
+#: beltoft-in-stock-notifier.php:55
+msgid "In-Stock Notifier requires WooCommerce to be installed and active."
+msgstr ""
+"In-Stock Notifier vyžaduje, aby byl plugin WooCommerce nainstalován a "
+"aktivní."
+
+#: beltoft-in-stock-notifier.php:92 src/Admin/AdminPage.php:61
+msgid "Settings"
+msgstr "Nastavení"
+
+#: src/Admin/AdminPage.php:44 src/Admin/AdminPage.php:45
+#: src/Admin/AdminPage.php:77
+msgid "In-Stock Notifier"
+msgstr "Hlídání dostupnosti"
+
+#: src/Admin/AdminPage.php:59
+msgid "Dashboard"
+msgstr "Přehled"
+
+#: src/Admin/AdminPage.php:60
+msgid "Subscriptions"
+msgstr "Odběry"
+
+#: src/Admin/DashboardTab.php:33
+msgid "Notifications queued. They will be sent shortly via cron."
+msgstr "Oznámení byla zařazena do fronty. Brzy budou odeslána pomocí cronu."
+
+#: src/Admin/DashboardTab.php:41
+msgid "Active Subscribers"
+msgstr "Aktivní odběratelé"
+
+#: src/Admin/DashboardTab.php:57
+msgid "Look Up Product Subscribers"
+msgstr "Vyhledat odběratele produktu"
+
+#: src/Admin/DashboardTab.php:70
+msgid "Search by product name or SKU..."
+msgstr "Hledat podle názvu produktu nebo SKU…"
+
+#: src/Admin/DashboardTab.php:75
+msgid "Look Up"
+msgstr "Vyhledat"
+
+#: src/Admin/DashboardTab.php:83
+msgid "Top Products by Active Subscriptions"
+msgstr "Nejlepší produkty podle aktivních odběrů"
+
+#: src/Admin/DashboardTab.php:95
+msgid "No active subscriptions yet."
+msgstr "Zatím žádné aktivní odběry."
+
+#: src/Admin/DashboardTab.php:136 src/Admin/SubscriptionsTab.php:157
+msgid "Product"
+msgstr "Produkt"
+
+#: src/Admin/DashboardTab.php:137
+msgid "SKU"
+msgstr "SKU"
+
+#: src/Admin/DashboardTab.php:139
+msgid "Brand"
+msgstr "Značka"
+
+#: src/Admin/DashboardTab.php:141
+msgid "Variation"
+msgstr "Varianta"
+
+#: src/Admin/DashboardTab.php:142
+msgid "Subscribers"
+msgstr "Odběratelé"
+
+#: src/Admin/DashboardTab.php:143
+msgid "Stock Status"
+msgstr "Stav skladu"
+
+#: src/Admin/DashboardTab.php:144
+msgid "Actions"
+msgstr "Akce"
+
+#: src/Admin/DashboardTab.php:213
+msgid "Send notifications to all active subscribers for this product?"
+msgstr "Odeslat oznámení všem aktivním odběratelům tohoto produktu?"
+
+#: src/Admin/DashboardTab.php:214
+msgid "Send Notifications"
+msgstr "Odeslat oznámení"
+
+#. translators: %s: total number of products
+#: src/Admin/DashboardTab.php:234
+#, php-format
+msgid "%s product"
+msgid_plural "%s products"
+msgstr[0] "%s produkt"
+msgstr[1] "%s produkty"
+msgstr[2] "%s produktů"
+
+#. translators: 1: current page, 2: total pages
+#: src/Admin/DashboardTab.php:244
+#, php-format
+msgid "%1$d of %2$d"
+msgstr "%1$d z %2$d"
+
+#: src/Admin/DashboardTab.php:269 src/Admin/SubscriptionsTab.php:57
+#: src/Admin/SubscriptionsTab.php:72 src/Admin/SubscriptionsTab.php:90
+msgid "You do not have permission to do this."
+msgstr "Nemáte oprávnění k provedení této akce."
+
+#: src/Admin/DashboardTab.php:304
+msgid "Product not found."
+msgstr "Produkt nebyl nalezen."
+
+#. translators: 1: displayed count, 2: total count
+#: src/Admin/DashboardTab.php:347
+#, php-format
 msgid ""
 "Showing first %1$d of %2$d subscribers. Use the Subscriptions tab for full "
 "results."
@@ -31,302 +165,220 @@ msgstr ""
 "Zobrazuje se prvních %1$d z %2$d odběratelů. Pro úplné výsledky použijte "
 "záložku Odběry."
 
-msgid ""
-"Are you sure you want to delete ALL subscriptions? This cannot be undone."
-msgstr "Opravdu chcete odstranit VŠECHNY odběry? Tuto akci nelze vrátit zpět."
-
-msgid "In-Stock Notifier requires WooCommerce to be installed and active."
-msgstr ""
-"In-Stock Notifier vyžaduje, aby byl plugin WooCommerce nainstalován a "
-"aktivní."
-
-msgid "Settings"
-msgstr "Nastavení"
-
-msgid "Dashboard"
-msgstr "Přehled"
-
-msgid "Subscriptions"
-msgstr "Odběry"
-
-msgid "Notifications queued. They will be sent shortly via cron."
-msgstr "Oznámení byla zařazena do fronty. Brzy budou odeslána pomocí cronu."
-
-msgid "Active Subscribers"
-msgstr "Aktivní odběratelé"
-
-msgid "Look Up Product Subscribers"
-msgstr "Vyhledat odběratele produktu"
-
-msgid "Search by product name or SKU..."
-msgstr "Hledat podle názvu produktu nebo SKU…"
-
-msgid "Look Up"
-msgstr "Vyhledat"
-
-msgid "Top Products by Active Subscriptions"
-msgstr "Nejlepší produkty podle aktivních odběrů"
-
-msgid "No active subscriptions yet."
-msgstr "Zatím žádné aktivní odběry."
-
-msgid "Product"
-msgstr "Produkt"
-
-msgid "SKU"
-msgstr "SKU"
-
-msgid "Brand"
-msgstr "Značka"
-
-msgid "Variation"
-msgstr "Varianta"
-
-msgid "Subscribers"
-msgstr "Odběratelé"
-
-msgid "Stock Status"
-msgstr "Stav skladu"
-
-msgid "Actions"
-msgstr "Akce"
-
-msgid "Send notifications to all active subscribers for this product?"
-msgstr "Odeslat oznámení všem aktivním odběratelům tohoto produktu?"
-
-msgid "Send Notifications"
-msgstr "Odeslat oznámení"
-
-msgid "%s product"
-msgid_plural "%s products"
-msgstr[0] "%s produkt"
-msgstr[1] "%s produkty"
-msgstr[2] "%s produktů"
-
-msgid "%1$d of %2$d"
-msgstr "%1$d z %2$d"
-
-msgid "You do not have permission to do this."
-msgstr "Nemáte oprávnění k provedení této akce."
-
-msgid "Product not found."
-msgstr "Produkt nebyl nalezen."
-
+#: src/Admin/DashboardTab.php:352
 msgid "No subscribers for this product."
 msgstr "Pro tento produkt nejsou žádní odběratelé."
 
+#: src/Admin/DashboardTab.php:356 src/Admin/SubscriptionsTab.php:156
 msgid "Email"
 msgstr "E-mail"
 
+#: src/Admin/DashboardTab.php:357 src/Admin/SubscriptionsTab.php:158
 msgid "Status"
 msgstr "Stav"
 
+#: src/Admin/DashboardTab.php:358 src/Admin/SubscriptionsTab.php:159
 msgid "Subscribed"
 msgstr "Přihlášeno"
 
+#: src/Admin/DashboardTab.php:359 src/Admin/SubscriptionsTab.php:160
 msgid "Notified"
 msgstr "Oznámeno"
 
+#: src/Admin/DashboardTab.php:402
 msgid "In stock"
 msgstr "Skladem"
 
+#: src/Admin/DashboardTab.php:403
 msgid "Out of stock"
 msgstr "Není skladem"
 
+#: src/Admin/DashboardTab.php:404
 msgid "On backorder"
 msgstr "Na objednávku"
 
+#: src/Admin/SettingsTab.php:30
 msgid "Settings saved."
 msgstr "Nastavení uloženo."
 
+#: src/Admin/SettingsTab.php:37
 msgid "General"
 msgstr "Obecné"
 
+#: src/Admin/SettingsTab.php:40
 msgid "Enable Notifications"
 msgstr "Povolit oznámení"
 
+#: src/Admin/SettingsTab.php:41
 msgid "Auto-place Form on Product Pages"
 msgstr "Automaticky umístit formulář na stránky produktů"
 
+#: src/Admin/SettingsTab.php:41
 msgid "Uncheck to use the [bisn_form] shortcode only."
 msgstr "Zrušte zaškrtnutí, chcete-li používat pouze zkrácený kód [bisn_form]."
 
+#: src/Admin/SettingsTab.php:42
 msgid "Show Quantity Field"
 msgstr "Zobrazit pole množství"
 
+#: src/Admin/SettingsTab.php:43
 msgid "Form Heading"
 msgstr "Nadpis formuláře"
 
+#: src/Admin/SettingsTab.php:43
 msgid "Text shown above the subscription form."
 msgstr "Text zobrazený nad formulářem pro odběr."
 
+#: src/Admin/SettingsTab.php:44
 msgid "Button Text"
 msgstr "Text tlačítka"
 
+#: src/Admin/SettingsTab.php:49
 msgid "GDPR / Consent"
 msgstr "GDPR / Souhlas"
 
+#: src/Admin/SettingsTab.php:52
 msgid "Require GDPR Consent"
 msgstr "Vyžadovat souhlas GDPR"
 
+#: src/Admin/SettingsTab.php:53
 msgid "Consent Text"
 msgstr "Text souhlasu"
 
+#: src/Admin/SettingsTab.php:58
 msgid "Messages"
 msgstr "Zprávy"
 
+#: src/Admin/SettingsTab.php:61
 msgid "Success Message"
 msgstr "Zpráva o úspěchu"
 
+#: src/Admin/SettingsTab.php:62
 msgid "Already Subscribed Message"
 msgstr "Zpráva o již existujícím odběru"
 
+#: src/Admin/SettingsTab.php:67
 msgid "Performance"
 msgstr "Výkon"
 
+#: src/Admin/SettingsTab.php:70
 msgid "Batch Size"
 msgstr "Velikost dávky"
 
+#: src/Admin/SettingsTab.php:70
 msgid "Emails per cron run (1-500)."
 msgstr "Počet e-mailů na jedno spuštění cronu (1–500)."
 
+#: src/Admin/SettingsTab.php:71
 msgid "Throttle (seconds)"
 msgstr "Omezení (sekundy)"
 
+#: src/Admin/SettingsTab.php:71
 msgid "Delay between each email (0 = no delay)."
 msgstr "Prodleva mezi jednotlivými e-maily (0 = bez prodlevy)."
 
+#: src/Admin/SettingsTab.php:72
 msgid "Rate Limit per IP"
 msgstr "Limit počtu na IP adresu"
 
+#: src/Admin/SettingsTab.php:72
 msgid "Max subscriptions per IP per hour."
 msgstr "Maximální počet odběrů na IP adresu za hodinu."
 
+#: src/Admin/SettingsTab.php:77
 msgid "Advanced"
 msgstr "Pokročilé"
 
+#: src/Admin/SettingsTab.php:80
 msgid "Cleanup After (days)"
 msgstr "Vyčistit po (dnech)"
 
+#: src/Admin/SettingsTab.php:80
 msgid "Delete notified subscriptions older than this. 0 = never delete."
 msgstr ""
 "Odstranit oznámené odběry starší než tato hodnota. 0 = nikdy neodstraňovat."
 
+#: src/Admin/SettingsTab.php:81
 msgid "Enable Logging"
 msgstr "Povolit protokolování"
 
+#: src/Admin/SettingsTab.php:82
 msgid "Remove Data on Uninstall"
 msgstr "Odstranit data při odinstalaci"
 
+#: src/Admin/SettingsTab.php:82
 msgid "Delete all plugin data when the plugin is deleted."
 msgstr "Odstranit všechna data pluginu při jeho smazání."
 
+#: src/Admin/SubscriptionsTab.php:39
 msgid "Search Email"
 msgstr "Hledat e-mail"
 
+#: src/Admin/SubscriptionsTab.php:62
 msgid "Subscription deleted."
 msgstr "Odběr odstraněn."
 
+#. translators: %d: number of deleted subscriptions
+#: src/Admin/SubscriptionsTab.php:78 src/Admin/SubscriptionsTab.php:101
+#, php-format
 msgid "%d subscription deleted."
 msgid_plural "%d subscriptions deleted."
 msgstr[0] "%d odběr odstraněn."
 msgstr[1] "%d odběry odstraněny."
 msgstr[2] "%d odběrů odstraněno."
 
+#. translators: %d: number of updated subscriptions
+#: src/Admin/SubscriptionsTab.php:109
+#, php-format
 msgid "%d subscription marked as notified."
 msgid_plural "%d subscriptions marked as notified."
 msgstr[0] "%d odběr označen jako oznámený."
 msgstr[1] "%d odběry označeny jako oznámené."
 msgstr[2] "%d odběrů označeno jako oznámené."
 
+#: src/Admin/SubscriptionsTab.php:256
 msgid "All statuses"
 msgstr "Všechny stavy"
 
+#: src/Admin/SubscriptionsTab.php:263
 msgid "Filter"
 msgstr "Filtrovat"
 
+#: src/Admin/SubscriptionsTab.php:268
 msgid "Bulk Actions"
 msgstr "Hromadné akce"
 
+#: src/Admin/SubscriptionsTab.php:269
 msgid "Delete Selected"
 msgstr "Odstranit vybrané"
 
+#: src/Admin/SubscriptionsTab.php:270
 msgid "Delete All Subscriptions"
 msgstr "Odstranit všechny odběry"
 
+#: src/Admin/SubscriptionsTab.php:271
 msgid "Mark as Notified"
 msgstr "Označit jako oznámené"
 
+#: src/Admin/SubscriptionsTab.php:274
 msgid "Apply"
 msgstr "Použít"
 
+#: src/Admin/SubscriptionsTab.php:309
 msgid "Delete this subscription?"
 msgstr "Odstranit tento odběr?"
 
+#: src/Admin/SubscriptionsTab.php:309
 msgid "Delete"
 msgstr "Odstranit"
 
+#: src/Admin/SubscriptionsTab.php:331
 msgid "SKU:"
 msgstr "SKU:"
 
+#: src/Admin/SubscriptionsTab.php:386
 msgid "No subscriptions found."
 msgstr "Nebyly nalezeny žádné odběry."
-
-msgid "Unsubscribe"
-msgstr "Odhlásit se"
-
-msgid "Available placeholders: %s"
-msgstr "Dostupné zástupné symboly: %s"
-
-msgid "Enable/Disable"
-msgstr "Povolit/Zakázat"
-
-msgid "Enable this email notification"
-msgstr "Povolit toto e-mailové oznámení"
-
-msgid "Subject"
-msgstr "Předmět"
-
-msgid "Email heading"
-msgstr "Nadpis e-mailu"
-
-msgid "Body text"
-msgstr "Text těla"
-
-msgid "Button text"
-msgstr "Text tlačítka"
-
-msgid "Footer text"
-msgstr "Text zápatí"
-
-msgid "Email type"
-msgstr "Typ e-mailu"
-
-msgid "Choose which format of email to send."
-msgstr "Vyberte, jaký formát e-mailu se má odeslat."
-
-msgid "Unsubscribe link text"
-msgstr "Text odkazu pro odhlášení"
-
-#. Plugin Name of the plugin
-#: beltoft-in-stock-notifier.php
-msgid "Beltoft In-Stock Notifier for WooCommerce"
-msgstr ""
-
-#. Plugin URI of the plugin
-#: beltoft-in-stock-notifier.php
-msgid "https://wordpress.org/plugins/beltoft-in-stock-notifier/"
-msgstr ""
-
-#. Author of the plugin
-#: beltoft-in-stock-notifier.php
-msgid "beltoft.net"
-msgstr ""
-
-#. Author URI of the plugin
-#: beltoft-in-stock-notifier.php
-msgid "https://beltoft.net"
-msgstr ""
 
 #: src/Email/BackInStockEmail.php:43
 msgid "Back In Stock"
@@ -367,15 +419,67 @@ msgstr ""
 "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání "
 "dostupnosti produktu na {site_title}."
 
+#: src/Email/BackInStockEmail.php:111 src/Unsubscribe/Handler.php:49
+#: src/Unsubscribe/Handler.php:58 src/Unsubscribe/Handler.php:66
+#: src/Unsubscribe/Handler.php:76 src/Unsubscribe/Handler.php:110
+msgid "Unsubscribe"
+msgstr "Odhlásit se"
+
 #: src/Email/BackInStockEmail.php:274
 msgid "Sample Product"
 msgstr "Ukázkový produkt"
 
-#: src/Frontend/AjaxHandler.php:43
+#. translators: %s: list of available placeholders
+#: src/Email/BackInStockEmail.php:285
+#, php-format
+msgid "Available placeholders: %s"
+msgstr "Dostupné zástupné symboly: %s"
+
+#: src/Email/BackInStockEmail.php:289
+msgid "Enable/Disable"
+msgstr "Povolit/Zakázat"
+
+#: src/Email/BackInStockEmail.php:291
+msgid "Enable this email notification"
+msgstr "Povolit toto e-mailové oznámení"
+
+#: src/Email/BackInStockEmail.php:295
+msgid "Subject"
+msgstr "Předmět"
+
+#: src/Email/BackInStockEmail.php:303
+msgid "Email heading"
+msgstr "Nadpis e-mailu"
+
+#: src/Email/BackInStockEmail.php:311
+msgid "Body text"
+msgstr "Text těla"
+
+#: src/Email/BackInStockEmail.php:320
+msgid "Button text"
+msgstr "Text tlačítka"
+
+#: src/Email/BackInStockEmail.php:328
+msgid "Footer text"
+msgstr "Text zápatí"
+
+#: src/Email/BackInStockEmail.php:337
+msgid "Unsubscribe link text"
+msgstr "Text odkazu pro odhlášení"
+
+#: src/Email/BackInStockEmail.php:345
+msgid "Email type"
+msgstr "Typ e-mailu"
+
+#: src/Email/BackInStockEmail.php:347
+msgid "Choose which format of email to send."
+msgstr "Vyberte, jaký formát e-mailu se má odeslat."
+
+#: src/Frontend/AjaxHandler.php:55
 msgid "Security check failed. Please refresh the page."
 msgstr "Bezpečnostní kontrola selhala. Obnovte prosím stránku."
 
-#: src/Frontend/AjaxHandler.php:90
+#: src/Frontend/AjaxHandler.php:102
 msgid "Something went wrong. Please try again."
 msgstr "Něco se pokazilo. Zkuste to prosím znovu."
 
@@ -399,6 +503,27 @@ msgstr "E-mailová adresa"
 msgid "Your email address"
 msgstr "Váš e-mail"
 
+#: src/Plugin.php:152
+msgid ""
+"Are you sure you want to delete ALL subscriptions? This cannot be undone."
+msgstr "Opravdu chcete odstranit VŠECHNY odběry? Tuto akci nelze vrátit zpět."
+
+#: src/Rest/SubscribersController.php:65
+msgid "Page of results (1-based)."
+msgstr "Stránka výsledků (číslováno od 1)."
+
+#: src/Rest/SubscribersController.php:73
+msgid "Number of products per page."
+msgstr "Počet produktů na stránku."
+
+#: src/Rest/SubscribersController.php:132
+msgid "Authentication required."
+msgstr "Je vyžadováno přihlášení."
+
+#: src/Rest/SubscribersController.php:140
+msgid "You are not allowed to view subscriber statistics."
+msgstr "Nemáte oprávnění zobrazit statistiky odběratelů."
+
 #: src/Subscription/Validator.php:33
 msgid "Spam detected."
 msgstr "Detekován spam."
@@ -418,6 +543,26 @@ msgstr "Prosím zaškrtněte souhlas."
 #: src/Subscription/Validator.php:58
 msgid "Too many requests. Please try again later."
 msgstr "Příliš mnoho požadavků. Zkuste to prosím později."
+
+#: src/Support/Options.php:82
+msgid "I agree to be notified when this product is back in stock."
+msgstr "Souhlasím se zasláním upozornění, až bude tento produkt opět skladem."
+
+#: src/Support/Options.php:86
+msgid "You will be notified when this product is back in stock."
+msgstr "Až bude tento produkt opět skladem, pošleme vám upozornění."
+
+#: src/Support/Options.php:87
+msgid "You are already subscribed for this product."
+msgstr "K odběru upozornění na tento produkt jste již přihlášeni."
+
+#: src/Support/Options.php:88
+msgid "Want to know when it's back? Leave your email below."
+msgstr "Chcete vědět kdy bude produkt zase skladem?"
+
+#: src/Support/Options.php:89
+msgid "Notify Me"
+msgstr "Upozornit mě"
 
 #: src/Unsubscribe/Handler.php:48 src/Unsubscribe/Handler.php:57
 msgid "Invalid unsubscribe link."
@@ -466,41 +611,3 @@ msgstr "Skladem"
 #, php-format
 msgid "Current stock: %s"
 msgstr "Momentálně skladem: %s"
-
-#: src/Support/Options.php:78
-msgid "Want to know when it's back? Leave your email below."
-msgstr "Chcete vědět kdy bude produkt zase skladem?"
-
-#~ msgid "Unsubscribe:"
-#~ msgstr "Odhlásit se:"
-
-#, php-format
-#~ msgid ""
-#~ "Good news! <strong>%1$s</strong> is back in stock at <a "
-#~ "href=\"%2$s\">%3$s</a>."
-#~ msgstr ""
-#~ "Dobrá zpráva! Produkt <strong>%1$s</strong> je opět na skladě na <a "
-#~ "href=\"%2$s\">%3$s</a>."
-
-#, php-format
-#~ msgid ""
-#~ "You received this email because you subscribed to a back-in-stock "
-#~ "notification on %1$s. <a href=\"%2$s\">Unsubscribe</a>"
-#~ msgstr ""
-#~ "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání "
-#~ "dostupnosti produktu %1$s. <a href=\"%2$s\">Odhlásit se</a>"
-
-#, php-format
-#~ msgid "Good news! %1$s is back in stock at %2$s."
-#~ msgstr "Dobrá zpráva! Produkt %1$s je opět na skladě na %2$s."
-
-#~ msgid "Shop Now:"
-#~ msgstr "Jít nakupovat:"
-
-#, php-format
-#~ msgid ""
-#~ "You received this email because you subscribed to a back-in-stock "
-#~ "notification on %s."
-#~ msgstr ""
-#~ "Tento e-mail jste obdrželi, protože jste se zaregistrovali k hlídání "
-#~ "dostupnosti produktu %s."

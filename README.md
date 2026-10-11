@@ -2,7 +2,7 @@
 
 Let customers subscribe to out-of-stock product notifications and automatically email them when items are back in stock.
 
-- Stable version: 1.2.3 (tested up to WordPress 7.0)
+- Stable version: 1.3.1 (tested up to WordPress 7.1)
 - Requires: WordPress 5.8+, PHP 7.4+, WooCommerce 6.0+
 - Author: beltoft.net
 - Text domain: beltoft-in-stock-notifier
@@ -123,6 +123,10 @@ GET /wp-json/beltoft-in-stock-notifier/v1/subscribers?page=1&per_page=200
 - Translation template: `languages/beltoft-in-stock-notifier.pot`
 
 ## Changelog
+
+### 1.3.1
+
+- Update the Portuguese (Portugal) and Czech translations: the subscription form's default button, success, already-subscribed and consent texts were still shown in English, and the 1.3.0 REST API messages were missing.
 
 ### 1.3.0
 

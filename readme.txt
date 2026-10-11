@@ -4,7 +4,7 @@ Tags: woocommerce, back in stock, restock, notification, waitlist
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,9 @@ WooCommerce and popular caching plugins already purge product pages when stock c
 5. Back In Stock email in WooCommerce email settings.
 
 == Changelog ==
+
+= 1.3.1 =
+- Update the Portuguese (Portugal) and Czech translations: the subscription form's default button, success, already-subscribed and consent texts were still shown in English, and the 1.3.0 REST API messages were missing.
 
 = 1.3.0 =
 - Add read-only REST endpoint `GET /wp-json/beltoft-in-stock-notifier/v1/subscribers` returning aggregate waiting / notified / signups-per-day counts per product for purchasing integrations. Authenticated via WooCommerce API keys or WordPress login; requires `manage_woocommerce`. Counts only — no personal data.
